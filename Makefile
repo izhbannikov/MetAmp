@@ -29,7 +29,10 @@ install :
 	@rm -rf R CMD INSTALL $(package_dir)/cdhitconverter/src/*.so
 	@echo "Done!"
 	
-	@echo "Unzipping evaluation data files..."
+	@echo "Unzipping data files..."
+	@rm -rf data/__MACOSX
+	@rm -rf data/LTP
+	unzip data/LTP.zip -d data/
 	@rm -rf Evaluation/data/__MACOSX
 	@rm -rf Evaluation/data/Dataset1
 	@rm -rf Evaluation/data/Dataset2
@@ -38,6 +41,7 @@ install :
 	
 	@echo "Cleaning up..."
 	@rm -rf Evaluation/data/__MACOSX
+	@rm -rf data/__MACOSX
 	@echo "Installation completed."
 
 clean :
@@ -49,7 +53,9 @@ clean :
 	@rm -rf R CMD INSTALL $(package_dir)/cdhitconverter/src/*.o
 	@rm -rf R CMD INSTALL $(package_dir)/cdhitconverter/src/*.so
 	@rm -rf Evaluation/analysis
-	@echo "Done!"
+	@rm -rf data/__MACOSX
+	@rm -rf data/LTP
 	@rm -rf Evaluation/data/__MACOSX
 	@rm -rf Evaluation/data/Dataset1
 	@rm -rf Evaluation/data/Dataset2
+	@echo "Done!"
