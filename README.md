@@ -1,4 +1,4 @@
-This is a workflow for analysis of meta-amplicon data.
+This is a workflow for analysis of meta-amplicon data. Project website: [Meta-Amplicon Analysis Project](http://izhbannikov.github.io/MetAmp/)
 
 By Ilya Y. Zhbannikov, zhba3458@vandals.uidaho.edu, i.zhbannikov@mail.ru
 
