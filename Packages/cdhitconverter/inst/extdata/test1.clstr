@@ -1,0 +1,81 @@
+>Cluster 0
+0	480aa, >S000005599... *
+1	179aa, >Record_4... at 98.88%
+2	55aa, >Record_5... at 98.18%
+3	142aa, >Record_10... at 98.59%
+4	280aa, >Record_12... at 100.00%
+5	198aa, >Record_14... at 100.00%
+6	226aa, >Record_17... at 100.00%
+7	270aa, >Record_18... at 99.26%
+8	110aa, >Record_22... at 100.00%
+9	82aa, >Record_23... at 100.00%
+10	144aa, >Record_24... at 99.31%
+11	102aa, >Record_25... at 100.00%
+12	254aa, >Record_26... at 100.00%
+13	189aa, >Record_27... at 100.00%
+14	185aa, >Record_28... at 99.46%
+>Cluster 1
+0	467aa, >S002230558... *
+1	138aa, >Record_33... at 100.00%
+2	273aa, >Record_34... at 100.00%
+3	234aa, >Record_38... at 100.00%
+4	273aa, >Record_40... at 99.27%
+5	271aa, >Record_43... at 99.63%
+6	203aa, >Record_44... at 99.51%
+7	272aa, >Record_46... at 99.63%
+8	158aa, >Record_49... at 100.00%
+>Cluster 2
+0	56aa, >Record_6... at 94.64%
+1	18aa, >Record_8... at 100.00%
+2	93aa, >Record_11... at 93.55%
+3	62aa, >Record_19... at 93.55%
+4	94aa, >Record_29... at 98.94%
+5	138aa, >Record_31... at 100.00%
+6	65aa, >Record_32... at 100.00%
+7	273aa, >Record_36... at 93.77%
+8	279aa, >Record_37... *
+9	275aa, >Record_41... at 94.91%
+10	275aa, >Record_47... at 93.45%
+11	272aa, >Record_48... at 95.59%
+>Cluster 3
+0	275aa, >Record_30... *
+1	268aa, >Record_45... at 90.30%
+>Cluster 4
+0	265aa, >Record_42... at 94.34%
+1	266aa, >Record_50... *
+>Cluster 5
+0	239aa, >Record_35... at 91.21%
+1	261aa, >Record_39... *
+>Cluster 6
+0	242aa, >Record_16... *
+>Cluster 7
+0	217aa, >Record_9... *
+1	55aa, >Record_15... at 100.00%
+>Cluster 8
+0	202aa, >S000001872... *
+1	191aa, >Record_51... at 98.95%
+2	192aa, >Record_52... at 100.00%
+3	114aa, >Record_53... at 99.12%
+4	151aa, >Record_54... at 100.00%
+5	192aa, >Record_55... at 99.48%
+6	192aa, >Record_57... at 100.00%
+7	192aa, >Record_58... at 100.00%
+8	192aa, >Record_59... at 99.48%
+9	192aa, >Record_60... at 100.00%
+10	193aa, >Record_62... at 99.48%
+11	192aa, >Record_66... at 100.00%
+12	119aa, >Record_67... at 100.00%
+13	192aa, >Record_68... at 100.00%
+14	192aa, >Record_69... at 99.48%
+>Cluster 9
+0	192aa, >Record_56... *
+1	192aa, >Record_61... at 96.35%
+2	192aa, >Record_63... at 99.48%
+3	161aa, >Record_64... at 100.00%
+4	192aa, >Record_65... at 100.00%
+5	192aa, >Record_70... at 97.40%
+>Cluster 10
+0	63aa, >Record_7... *
+1	24aa, >Record_13... at 100.00%
+2	60aa, >Record_20... at 100.00%
+3	15aa, >Record_21... at 100.00%

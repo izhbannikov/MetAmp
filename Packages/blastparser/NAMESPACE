@@ -1,0 +1,11 @@
+exportPattern("^[[:alpha:]]+")
+# Import required packages
+importFrom(Rcpp, evalCpp)
+import(seqinr)
+# none so far 
+# Load dynamic libraries (shared object files)
+useDynLib(BLASTParser)
+# Export functions defined in R code
+export("BuildIdentityMatrix")
+export("BuildIdentityMatrixUSEARCH")
+export("BuildIdentityMatrixUSEARCH2")
