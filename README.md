@@ -10,7 +10,7 @@ Such marker regions serve as unique identificators for species. There are nine m
 
 ## How to install
 
-Download or clone from the Bitbucket, save it in some folder you wish. Then simply run make. 
+Download or clone from the GitHub, save it in some folder you wish. Then simply run ```make```. 
 This will check for required packages and install in case if some packages were not found.
 
 ## Provided data description
