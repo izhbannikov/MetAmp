@@ -31,6 +31,7 @@ data extracted from All Species Living Tree Project.
 	  		 +-LTP-10271_V13.fasta - reference sequences for marker 1-3
 	  		 +-LTP-10271_V35.fasta - sequences for marker 3-5
 	  		 +-LTP-10271_V69.fasta - sequences for marker 6-9
+	   +-RDP-+
 ```
 
 * RDP folder contains the same kind of data but extracted from [Ribosomal Database Project](http://rdp.cme.msu.edu/)
@@ -38,6 +39,7 @@ Only 100 species. Can be used for quick small projects.
 
 ```
 +-data-+
+	   +-LTP-+
 	   +-RDP-+
 	   		 +-refSetV69-100.fasta - reference sequences for marker 1-3
 	   		 +-refSetV13-100.fasta - reference sequences for marker 3-5
