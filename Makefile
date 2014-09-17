@@ -42,6 +42,7 @@ install :
 	@echo "Cleaning up..."
 	@rm -rf Evaluation/data/__MACOSX
 	@rm -rf data/__MACOSX
+	@ls > content # Making content of this folder
 	@echo "Installation completed."
 
 clean :
