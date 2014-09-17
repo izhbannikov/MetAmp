@@ -2,18 +2,18 @@ This is a workflow for analysis of meta-amplicon data. Project website: [Meta-Am
 
 By Ilya Y. Zhbannikov, zhba3458@vandals.uidaho.edu, i.zhbannikov@mail.ru
 
-## Program description
+# Program description
 
 MetAmp tool is developed for analysis of amplicon data by combining several marker regions from 16S rRNA genes.
 Such marker regions serve as unique identificators for species. There are nine marker regions in bacterial 
 16S rRNA gene.
 
-## How to install
+# How to install
 
 Download or clone from the GitHub, save it in some folder you wish. Then simply run ```make```. 
 This will check for required packages and install in case if some packages were not found.
 
-## Provided data description
+# Provided data description
 
 We provided data that can be used in your projects. This data located in ```data``` folder.
 We also provided data for evaluation of MetAmp (located in ```Evaluation/data/``` folder). 
@@ -71,13 +71,13 @@ To run the program on test data open evaluation.R and set the working directory 
 >source("evaluation.R")
 ~~~
 
-## How to run the program on your data
+# How to run the program on your data
 
 Before analysis, you may need to perform data denoising and (if you use Illumina sequence data), merge overlapping reads.
 
 Later I will provide the scripts that do it.
 
-### 1. Edit script ```main.R```, specifically:
+## 1. Edit script ```main.R```, specifically:
 
 Set the work directory ```dir_path```, for example:
 
@@ -106,14 +106,14 @@ refs <- c("~/Projects/metamp/Evaluation/data/HMC_ref_V13.fasta", # Reference gud
 Warning! Reference sequences and your data must be concordant, i.e., for example, in ```libs``` array library ```SRR053817_3.fastq``` 
 must be in the same position that ```HMC_ref_V13.fasta``` in ```refs``` array.
 
-### 2. Set the program directory in ```main.R```, for example:
+## 2. Set the program directory in ```main.R```, for example:
 
 ~~~R
 dir_path <- "~/Projects/metamp/"
 ~~~
 
 
-### 3. Run the script ```main.R```:
+## 3. Run the script ```main.R```:
 
 ~~~R
 source("main.R")
