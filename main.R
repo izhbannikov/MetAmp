@@ -15,10 +15,10 @@ libs <- c("Evaluation/data/Dataset1/SRR053817_V1_V3/SRR053817_3.fastq", # V1-3
           "Evaluation/data/Dataset1/SRR053818_V3_V5/SRR053818_3.fastq", # V3-5
           "Evaluation/data/Dataset1/SRR053819_V6_V9/SRR053819_3.fastq") # V6-9
 # Reference sequences:
-ref16S <- "Evaluation/data/HMC_ref_16S.fasta"
-refs <- c("Evaluation/data/HMC_ref_V13.fasta", # V1-3
-          "Evaluation/data/HMC_ref_V35.fasta", # V3-5
-          "Evaluation/data/HMC_ref_V69.fasta") # V6-9
+ref16S <- "data/LTP/LTP-10271.fasta"
+refs <- c("data/LTP/LTP-10271_V13.fasta", # V1-3
+          "data/LTP/LTP-10271_V35.fasta", # V3-5
+          "data/LTP/LTP-10271_V69.fasta") # V6-9
 
 source("config.R") # Link the configuration file with default program parameters and path to the data
 source("metamp.R") # Link the analysis pipeline
