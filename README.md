@@ -65,7 +65,7 @@ Amplicon sequences contain sequence data from Human Mock Community. More informa
 The ```Dataset1``` and ```Dataset2``` are the Human mock communuty (HMP) pyrosequence data (SRX021555: (http://www.ncbi.nlm.nih.gov/sra?term=SRR053818)), and can be cleaned with [SeqyClean](https://bitbucket.org/izhbannikov/seqyclean).
 Detailed description of these datasets (and sequencing protocols) is under the following link: (http://www.hmpdacc.org/HMMC/)
 
-To run the program on test data open evaluation.R and set the working directory (this directory should contain test_data directory) and run the script test.R from R-environment:
+To run the program on test data open evaluation.R and set the working directory and run the script from R-environment or R-Studio:
 
 ~~~R
 >source("evaluation.R")
