@@ -7,8 +7,18 @@
 # Set the working directory by changing the "dir_path" variable
 # Under R-environmentL $>source("main.R")
 #
-# Setting the work directory:
+# Set the work directory:
 dir_path <- "~/Projects/metamp/" # Working directory where all analysis data will be stored
 setwd(dir_path)
-source("config.R") # Configuration file with default program parameters and path to the data
+# Provide your data here (can be raw or preprocessed libs, program assumes one file for each region):
+libs <- c("Evaluation/data/Dataset1/SRR053817_V1_V3/SRR053817_3.fastq", # V1-3
+          "Evaluation/data/Dataset1/SRR053818_V3_V5/SRR053818_3.fastq", # V3-5
+          "Evaluation/data/Dataset1/SRR053819_V6_V9/SRR053819_3.fastq") # V6-9
+# Reference sequences:
+ref16S <- "Evaluation/data/HMC_ref_16S.fasta"
+refs <- c("Evaluation/data/HMC_ref_V13.fasta", # V1-3
+          "Evaluation/data/HMC_ref_V35.fasta", # V3-5
+          "Evaluation/data/HMC_ref_V69.fasta") # V6-9
+
+source("config.R") # Link the configuration file with default program parameters and path to the data
 source("metamp.R") # Link the analysis pipeline

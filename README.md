@@ -63,7 +63,7 @@ Amplicon sequences contain sequence data from Human Mock Community. More informa
 ```
 
 The ```Dataset1``` and ```Dataset2``` are the Human mock communuty (HMP) pyrosequence data (SRX021555: (http://www.ncbi.nlm.nih.gov/sra?term=SRR053818)), and can be cleaned with [SeqyClean](https://bitbucket.org/izhbannikov/seqyclean).
-Detailed description of these datasets (and sequencing protocols) is under the following link: http://www.hmpdacc.org/HMMC/
+Detailed description of these datasets (and sequencing protocols) is under the following link: (http://www.hmpdacc.org/HMMC/)
 
 To run the program on test data open evaluation.R and set the working directory (this directory should contain test_data directory) and run the script test.R from R-environment:
 
@@ -77,7 +77,14 @@ Before analysis, you may need to perform data denoising and (if you use Illumina
 
 Later I will provide the scripts that do it.
 
-### 1. Edit script config.R, specifically:
+### 1. Edit script ```main.R```, specifically:
+
+Set the work directory ```dir_path```, for example:
+
+~~~R
+dir_path <- "~/Projects/metamp/"
+~~~
+Working directory where all analysis data will be stored
 
 Provide your sequences, for example:
 
@@ -87,7 +94,7 @@ libs <- c("~/Projects/metamp/Evaluation/data/Dataset1/SRR053817_V1_V3/SRR053817_
           "~/Projects/metamp/Evaluation/data/Dataset1/SRR053819_V6_V9/SRR053819_3.fastq")  # V6-9
 ~~~
 
-and reference sequences:
+and (if you need) reference sequences:
 
 ~~~R
 ref16S <- "~/Projects/metamp/Evaluation/data/HMC_ref_16S.fasta" # Reference 16S gene sequences
@@ -95,6 +102,9 @@ refs <- c("~/Projects/metamp/Evaluation/data/HMC_ref_V13.fasta", # Reference gud
           "~/Projects/metamp/Evaluation/data/HMC_ref_V35.fasta",        
           "~/Projects/metamp/Evaluation/data/HMC_ref_V69.fasta")
 ~~~
+
+Warning! Reference sequences and your data must be concordant, i.e., for example, in ```libs``` array library ```SRR053817_3.fastq``` 
+must be in the same position that ```HMC_ref_V13.fasta``` in ```refs``` array.
 
 ### 2. Set the program directory in ```main.R```, for example:
 

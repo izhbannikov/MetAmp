@@ -47,6 +47,7 @@ install :
 
 clean :
 	@echo "Cleaning up..."
+	@rm -rf analysis
 	@rm -rf .Rhistory
 	@rm -rf .DS_Store
 	@rm -rf $(package_dir)/blastparser/src/*.o

@@ -3,9 +3,10 @@
 #
 # Computes a distance matrix for 16S gene sequences:
 generate_distance_matrix16S <- function(filename) {
-  system(paste(usearch, "-distmx_brute -calc_distmx", filename, "-distmxout", paste(filename,"_out",sep=''), "-format square"))
+  usearch_out <- paste(analysis_dir, '/', basename(filename),"_out.mx",sep='')
+  system(paste(usearch, "-distmx_brute -calc_distmx", filename, "-distmxout", usearch_out, "-format square"))
   reads <- read.fasta(filename)
-  identity_matrix <- BuildDistanceMatrixUSEARCH_v8(filename, paste(filename,"_out",sep=''))
+  identity_matrix <- BuildDistanceMatrixUSEARCH_v8(filename, usearch_out)
   identity_matrix
 }
 

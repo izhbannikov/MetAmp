@@ -47,7 +47,7 @@ clusterDBSCAN <- function(refnames, summary_matrix,scoresV) {
   
   #k <- sum(array)/(( min(array) + sum(array) )/2)
   #eps <- k+( max(r1,na.rm=T) - min(r1,na.rm=T) )*( max(r2,na.rm=T) - min(r2,na.rm=T) ) / (dim(summary_matrix)[1])
-  eps <- quantile(dist(mds16S),probs=0.01)#0.025)
+  eps <- quantile(dist(mds16S),probs=0.005)#0.025)
   tmp_clusters <- dbscan(summary_matrix[sample.int(nrow(summary_matrix)),],MinPts=1,  eps)
   #tmp_clusters <- dbscan(summary_matrix[sample.int(nrow(summary_matrix)),],MinPts=1,  eps*0.01)
   #flag <- F
