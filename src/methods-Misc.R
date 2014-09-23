@@ -83,6 +83,12 @@ process_data <- function(imatrix, mds16s, nrp) {
   
   empir_points <- mdsV[!(rownames(mdsV) %in% rownames(mds16S)),] # Empirical clusters
   
+  if (length(empir_points) == 2) { # But what is no empirical points left??
+    empir_points <- matrix(empir_points, nrow=1, ncol=2, byrow=T)
+    rownames(empir_points)=setdiff(rownames(mdsV),rownames(mds16S))
+  }
+  #print(empir_points)
+  #print(dim(empir_points))
   #Finally, let us normalize the data:
   ans <- process_amplicon_data( mds16s, ref_points, empir_points)
   ans

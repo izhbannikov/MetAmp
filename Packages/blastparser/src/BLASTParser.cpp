@@ -124,7 +124,7 @@ RcppExport SEXP BuildIdentityMatrixUSEARCH(SEXP fnameU, SEXP sz)
 	std::vector<std::string> splitted_line = split_str(line," ");
 	std::string prev_subject = splitted_line[8];
 	long j = atoi((splitted_line[1]).c_str());
-	imatrix(i, j) = 1.0 - atof((splitted_line[3]).c_str())/100.0;
+	imatrix(i, j) = atof((splitted_line[3]).c_str())/100.0;
 	imatrix(j, i) = imatrix(i,j);
     
     while ( getline(in,line) ) {
@@ -139,24 +139,31 @@ RcppExport SEXP BuildIdentityMatrixUSEARCH(SEXP fnameU, SEXP sz)
     	}
     	
     	if (splitted_line[0] == "N") {
-    		break;
+    		continue;
     	}
     	
     	long j = atoi((splitted_line[1]).c_str());
-    	imatrix(i, j) = 1.0 - atof((splitted_line[3]).c_str())/100.0;
+    	imatrix(i, j) = atof((splitted_line[3]).c_str())/100.0;
     	imatrix(j, i) = imatrix(i,j);
     	
 	}
 	
-	for (int _i=1; _i<i; _i++) {
-		for (int _j=0; _j<i; _j++) {
-			if (imatrix(_i,_j) == 0) {
-    			imatrix(_i,_j) = 1.0 - 0.10 + (float)(rand() % 150)/100.0;
-    			imatrix(_j, _i) = imatrix(_i,_j);
-    		} 
+	
+	in.close();
+	
+	for (int _i=0; _i<n; _i++) {
+		for (int _j=0; _j<n; _j++) {
+			if (_i == _j) {
+    			imatrix(_i, _j) = 0.0;
+    			continue;
+    		}
+    		
+    		imatrix(_i, _j) = 1.0-imatrix(_i, _j);
+    		
+    		//if (imatrix(_i, _j) == 0)
+    		//	imatrix(_i, _j) = 0.001;
 		}
 	}
-	in.close();
 	
 	return Rcpp::wrap(imatrix);
 }

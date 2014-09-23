@@ -32,3 +32,4 @@ pooling_samples <- T # If it is 'T' than the program assumes that the read heade
 final_clust_filename <- "clusters.clstr"
 # Output file with coordinates:
 coord_filename <- "coordinates.crd"
+max_threads <- 16
