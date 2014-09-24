@@ -139,8 +139,6 @@ generate_test_set <- function(dat,num,limits) {
   next_index <- 1
   for(i in 1:dim(dat)[1]) {
     for(j in seq(next_index,next_index+num-1)) {
-      #test_set[j,1] <- runif(1,dat[i,1]-0.025,dat[i,1]+0.025)
-      #test_set[j,2] <- runif(1,dat[i,2]-0.025,dat[i,2]+0.025)
       test_set[j,1] <- runif(1,dat[i,1]-limits[1],dat[i,1]+limits[1])
       test_set[j,2] <- runif(1,dat[i,2]-limits[2],dat[i,2]+limits[2])
     }

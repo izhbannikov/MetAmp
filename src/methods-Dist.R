@@ -49,17 +49,21 @@ generate_distance_matrix <- function(fnameREF="", fnameEMP="") {
   d1 = identity_matrix
   sz = dim(d1)[1]
   del = c()
+  m_table <- c()
   for (i in 1:sz) {
     for (j in 1:sz) {
       if ((d1[i,j]<0.025) && (i > dim(score16S)[1]) && (i != j)) {
         #print(c(i,j))
         del = c(del,i)
+        m_table = c(m_table, colnames(identity_matrix)[j], rownames(identity_matrix)[i])
       }
     }
   }
   keep.idx <- setdiff(seq_len(nrow(d1)), del)
   identity_matrix = d1[keep.idx, keep.idx]
   identity_matrix
+  m_table <- matrix(m_table, ncol=2, byrow=T)
+  list(identity_matrix, m_table)
 }
 
 
@@ -67,9 +71,12 @@ generate_distance_matrix <- function(fnameREF="", fnameEMP="") {
 #readDistanceMatrices <- function(use_custom_matrix = F, work_libs) {
 readDistanceMatrices <- function(work_libs) {
   scoresV <- list()
+  merged_table <- list()
   for(i in 1:length(libs)) {
     cat("Library: ", basename(work_libs[i,1]),'\n')
-    scoresV[[i]] <- generate_distance_matrix(fnameREF=refs[i], fnameEMP=work_libs[i,1])
+    distances <- generate_distance_matrix(fnameREF=refs[i], fnameEMP=work_libs[i,1])
+    scoresV[[i]] <- distances[[1]]
+    merged_table[[i]] <- distances[[2]]
   }
-  scoresV
+  list(scoresV, merged_table)
 }

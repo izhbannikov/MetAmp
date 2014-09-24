@@ -85,7 +85,7 @@ getRefOTUNum <- function(ref_points, otu) {
 }
 
 # Call clustering program
-cluster2 <- function(analysis_dir, default_pref, lib) {
+cluster2 <- function(analysis_dir, default_pref, lib, num) {
   # Denoising:
   denoisedlib <- paste(analysis_dir, "/", basename(lib), "_denoised", sep='')
   system(paste(usearch7, "-fastq_filter", lib,  "-fastaout", denoisedlib, "-fastq_truncqual 15 -fastq_trunclen 250"))
@@ -104,8 +104,10 @@ cluster2 <- function(analysis_dir, default_pref, lib) {
   # Filtering chimeric sequences:
   nochimericlib <- paste(clusterlib, "_nochimeric", sep='')
   system(paste(usearch7, "-uchime_ref", clusterlib, "-db", ref16S, "-strand plus -nonchimeras", nochimericlib))
-  
-  #print(nochimericlib)
-  nochimericlib
+  # python python_scripts/fasta_number.py ../../metamp/analysis/SRR072221_forward.fastq_denoised_drep_pre_sorted_clustered_nochimeric OTU_ > otus.fa
+  finalotus <- paste(nochimericlib, "_otus.fasta", sep='')
+  system(paste("python python_scripts/fasta_number.py", nochimericlib, paste("OTU_",num,'_',sep=''), ">", finalotus))
+  # ../usearch7.0.1090_i86osx32 -usearch_global ../../metamp/analysis/SRR072221_forward.fastq_denoised -db otus.fa -strand plus -id 0.97 -uc map.uc
+  finalotus
 }
 
