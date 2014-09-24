@@ -102,8 +102,8 @@ and (if you need) reference sequences:
 ~~~R
 # Reference 16S gene sequences
 ref16S <- "Evaluation/data/16S.fasta"  
-# V1-3 # Reference gude (marker) regions
-refs <- c("Evaluation/data/V13.fasta", 
+# Reference gude (marker) regions
+refs <- c("Evaluation/data/V13.fasta", # V1-3 
           "Evaluation/data/V35.fasta", # V3-5
           "Evaluation/data/V69.fasta") # V6-9
 ~~~
