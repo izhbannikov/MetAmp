@@ -10,8 +10,8 @@ This folder contains the following subfolders and files:
 ```
 +-Evaluation-+
 			 +-data-+ - contains the following evaluation data:
-	   		 +-Dataset1.zip
-	   		 +-Dataset2.zip - compressed libraries
+	   		 		+-even
+	   		 		+-staggered - Human Mock Community staggered libraries (markers 1-3, 3-5 and 6-9)
 	   		 +-HMC_ref_16S.fasta - reference whole 16S sequences.
 	   		 +-HMC_ref_V13.fasta - reference marker sequences (for markers 1-3, 3-5 and 6-9).
 	   		 +-HMC_ref_V35.fasta
