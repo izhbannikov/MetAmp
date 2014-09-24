@@ -5,10 +5,13 @@ all : check install
 
 check :
 	@echo "Checking for R..."
-	@command -v R >/dev/null 2>&1 || { echo >&2 "I require R but it's not installed.  Aborting."; exit 1; }
+	@command -v R > /dev/null 2>&1 || { echo > &2 "I require R but it's not installed.  Aborting."; exit 1; }
 	@echo "Done!"
 	@echo "Checking for GCC..."
-	@command -v gcc >/dev/null 2>&1 || { echo >&2 "I require GCC but it's not installed.  Aborting."; exit 1; }
+	@command -v gcc > /dev/null 2>&1 || { echo > &2 "I require GCC but it's not installed.  Aborting."; exit 1; }
+	@echo "Done!"
+	@echo "Checking for Python..."
+	@command -v python > /dev/null 2>&1 || { echo > &2 "I require Python but it's not installed.  Aborting."; exit 1; }
 	@echo "Done!"
 	
 install :
@@ -34,10 +37,10 @@ install :
 	@rm -rf data/LTP
 	unzip data/LTP.zip -d data/
 	@rm -rf Evaluation/data/__MACOSX
-	@rm -rf Evaluation/data/Dataset1
-	@rm -rf Evaluation/data/Dataset2
-	unzip Evaluation/data/Dataset1.zip -d Evaluation/data/
-	unzip Evaluation/data/Dataset2.zip -d Evaluation/data/
+	@rm -rf Evaluation/data/even
+	@rm -rf Evaluation/data/staggered
+	unzip Evaluation/data/even.zip -d Evaluation/data/
+	unzip Evaluation/data/staggered.zip -d Evaluation/data/
 	
 	@echo "Cleaning up..."
 	@rm -rf Evaluation/data/__MACOSX
@@ -58,6 +61,6 @@ clean :
 	@rm -rf data/__MACOSX
 	@rm -rf data/LTP
 	@rm -rf Evaluation/data/__MACOSX
-	@rm -rf Evaluation/data/Dataset1
-	@rm -rf Evaluation/data/Dataset2
+	@rm -rf Evaluation/data/even
+	@rm -rf Evaluation/data/staggered
 	@echo "Done!"

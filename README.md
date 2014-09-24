@@ -52,18 +52,19 @@ Amplicon sequences contain sequence data from Human Mock Community. More informa
 ```
 +-Evaluation-+
 			 +-data-+
-			 		+-Dataset1
-			 		+-Dataset2
-	 	     		+-Dataset1.zip - zipped sequence data for even community (ids)
-		     		+-Dataset2.zip - zipped sequence data for staggered community (ids )
-		     		+-HMC_ref_16S.fasta - contains 30 reference 16S sequences
-		     		+-HMC_ref_V13.fasta - contains 30 reference marker sequences (1-3 regions)
-		     		+-HMC_ref_V35.fasta - contains 30 reference marker sequences (3-5 regions)
-		     		+-HMC_ref_V69.fasta - contains 30 reference marker sequences (6-9 regions)
+			 		+-even-+
+			 		+-staggered+
+			 				   +-SRR072221_forward.fastq - staggered V1-3 Human Mock Community (HMC) sequences in forward (5'->3') direction
+			 				   +-SRR072236_forward.fastq - staggered V3-5 Human Mock Community (HMC) sequences in forward (5'->3') direction
+			 				   +-SRR072237_forward.fastq - staggered V6-9 Human Mock Community (HMC) sequences in forward (5'->3') direction
+			 		+-16S.fasta - contains 30 reference 16S sequences
+		     		+-V13.fasta - contains 30 reference marker sequences (1-3 regions)
+		     		+-V35.fasta - contains 30 reference marker sequences (3-5 regions)
+		     		+-V69.fasta - contains 30 reference marker sequences (6-9 regions)
 ```
 
-The ```Dataset1``` and ```Dataset2``` are the Human mock communuty (HMP) pyrosequence data (SRX021555: (http://www.ncbi.nlm.nih.gov/sra?term=SRR053818)), and can be cleaned with [SeqyClean](https://bitbucket.org/izhbannikov/seqyclean).
-Detailed description of these datasets (and sequencing protocols) is under the following link: (http://www.hmpdacc.org/HMMC/)
+The ```even``` and ```staggered``` are the Human mock communuty (HMP) pyrosequence data (SRX021555).
+Detailed description of these datasets (and sequencing protocols) you can find under the following link: (http://www.hmpdacc.org/HMMC/)
 
 To run the program on test data open evaluation.R and set the working directory and run the script from R-environment or R-Studio:
 
@@ -74,6 +75,8 @@ To run the program on test data open evaluation.R and set the working directory 
 # How to run the program on your data
 
 Before analysis, you may need to perform data denoising and (if you use Illumina sequence data), merge overlapping reads.
+
+All reads in your library must be in forward (5'->3') direction.
 
 Later I will provide the scripts that do it.
 
@@ -89,22 +92,24 @@ Working directory where all analysis data will be stored
 Provide your sequences, for example:
 
 ~~~R
-libs <- c("~/Projects/metamp/Evaluation/data/Dataset1/SRR053817_V1_V3/SRR053817_3.fastq",  # V1-3
-          "~/Projects/metamp/Evaluation/data/Dataset1/SRR053818_V3_V5/SRR053818_3.fasta",  # V3-5
-          "~/Projects/metamp/Evaluation/data/Dataset1/SRR053819_V6_V9/SRR053819_3.fastq")  # V6-9
+libs <- c("Evaluation/data/staggered/SRR072221_forward.fastq", # V1-3
+          "Evaluation/data/staggered/SRR072237_forward.fastq", # V3-5
+          "Evaluation/data/staggered/SRR072236_forward.fastq") # V6-9
 ~~~
 
 and (if you need) reference sequences:
 
 ~~~R
-ref16S <- "~/Projects/metamp/Evaluation/data/HMC_ref_16S.fasta" # Reference 16S gene sequences
-refs <- c("~/Projects/metamp/Evaluation/data/HMC_ref_V13.fasta", # Reference gude (marker) regions
-          "~/Projects/metamp/Evaluation/data/HMC_ref_V35.fasta",        
-          "~/Projects/metamp/Evaluation/data/HMC_ref_V69.fasta")
+# Reference 16S gene sequences
+ref16S <- "Evaluation/data/16S.fasta"  
+# Reference gude (marker) regions
+refs <- c("Evaluation/data/V13.fasta", # V1-3 
+          "Evaluation/data/V35.fasta", # V3-5
+          "Evaluation/data/V69.fasta") # V6-9
 ~~~
 
-Warning! Reference sequences and your data must be concordant, i.e., for example, in ```libs``` array library ```SRR053817_3.fastq``` 
-must be in the same position that ```HMC_ref_V13.fasta``` in ```refs``` array.
+Warning! Reference sequences and your data must be concordant, i.e., for example, in ```libs``` array library ```SRR072221_forward.fastq``` 
+must be in the same position that ```V13.fasta``` in ```refs``` array.
 
 ## 2. Set the program directory in ```main.R```, for example:
 
