@@ -1,7 +1,7 @@
 #Step 3. Make triangulation (Use reference 16S plane for this):
 triangulation <- function(mds16S, mdsV) {
-  
-  mdsV[which(duplicated(mdsV)==T),] <- mdsV[which(duplicated(mdsV)==T),] + runif(length(which(duplicated(mdsV)==T)), 0.000001, 0.0001)
+  #mds16S = mds16s
+  #mdsV = ref_points
   
   tri_mesh <- tri.mesh( mdsV[, 1], mdsV[, 2] )
   #plot(tri_mesh)
@@ -23,21 +23,21 @@ triangulation <- function(mds16S, mdsV) {
   #Calculate centroids of triangles in order to transmit them later into k-d tree:
   centroids <- matrix(0,nrow=dim(tr)[1],ncol = 8) # V
   centroids2 <- matrix(0,nrow=dim(tr)[1],ncol = 8) # 16S
-  #Для V
+  #?????? V
   centroids[,1] <- rowSums(tr_coords[,1:3])/3
   centroids[,2] <- rowSums(tr_coords[,4:6])/3
   centroids[,3:8] <- tr_coords[,1:6]
   
-  #Для 16S
+  #?????? 16S
   centroids2[,1] <- rowSums(tr_coords2[,1:3])/3
   centroids2[,2] <- rowSums(tr_coords2[,4:6])/3
   centroids2[,3:8] <- tr_coords2[,1:6]
   
-  #-----------Временно закомментируем------------#
+  ##-----------???????????????? ????????????????????????????------------#
   #for (i in 1:1) {
   #  mdsV <- rbind(mdsV,centroids[,1:2])
   #  mds16S <- rbind(mds16S,centroids2[,1:2])
-  #  ##Здесь делается разбивка на более мелкие треугольники:
+  #  ##?????????? ???????????????? ???????????????? ???? ?????????? ???????????? ????????????????????????:
   #  ans <- add_triangles(centroids, centroids2,mdsV,tr_indices)
   #  tr_coords <- ans[[1]]
   #  tr_coords2 <- ans[[2]]
@@ -48,25 +48,25 @@ triangulation <- function(mds16S, mdsV) {
   #  #Calculate centroids of triangles in order to transmit them later into k-d tree:
   #  centroids <- matrix(0,nrow=dim(tr_coords)[1],ncol = 8)
   #  centroids2 <- matrix(0,nrow=dim(tr_coords2)[1],ncol = 8)
-  #  #Для V
+  #  #?????? V
   #  centroids[,1] <- rowSums(tr_coords[,1:3])/3
   #  centroids[,2] <- rowSums(tr_coords[,4:6])/3
   #  centroids[,3:8] <- tr_coords[,1:6]
-  #  #Для 16S
+  #  #?????? 16S
   #  centroids2[,1] <- rowSums(tr_coords2[,1:3])/3
   #  centroids2[,2] <- rowSums(tr_coords2[,4:6])/3
   #  centroids2[,3:8] <- tr_coords2[,1:6]
   #}
   #mdsV <- rbind(mdsV,centroids[,1:2])
   #mds16S <- rbind(mds16S,centroids2[,1:2])
-  #
+  ##
   #centroids <- matrix(0,nrow=dim(tr_coords)[1],ncol = 8)
   #centroids2 <- matrix(0,nrow=dim(tr_coords2)[1],ncol = 8)
-  ###Для V
+  ##V
   #centroids[,1] <- rowSums(tr_coords[,1:3])/3
   #centroids[,2] <- rowSums(tr_coords[,4:6])/3
   #centroids[,3:8] <- tr_coords[,1:6]
-  ###Для 16S
+  ###16S
   #centroids2[,1] <- rowSums(tr_coords2[,1:3])/3
   #centroids2[,2] <- rowSums(tr_coords2[,4:6])/3
   #centroids2[,3:8] <- tr_coords2[,1:6]
@@ -75,6 +75,7 @@ triangulation <- function(mds16S, mdsV) {
   transformations <- matrix(0, nrow=dim(tr_coords)[1],ncol = 9)
   mdsV_new <- matrix(0,nrow=dim(mdsV)[1], ncol=dim(mdsV)[2])
   for(i in 1:dim(tr_coords)[1]) {
+    
     point.x <- tr_coords2[i,1:3]
     point.y <- tr_coords2[i,4:6]
   
@@ -82,7 +83,7 @@ triangulation <- function(mds16S, mdsV) {
                c(point.y[1],point.y[2],point.y[3]),#point.y[1]),
                c(1,1,1))#,1))
   
-    #Here I am extracting the triangles from V4 reference plane:
+    #Here I am extracting the triangles:
     point.x <- tr_coords[i,1:3]
     point.y <- tr_coords[i,4:6]
     P <- rbind(c(point.x[1],point.x[2],point.x[3]),#point.x[1]),
@@ -109,10 +110,10 @@ triangulation <- function(mds16S, mdsV) {
   
     mdsV_new[tr_indices[i,1:3],1] <- PP[1,1:3]
     mdsV_new[tr_indices[i,1:3],2] <- PP[2,1:3]
-    
+    #print(i)
   }
   
-  
+  print(mean(diff))
   
   list(transformations, centroids, list(mdsV_new), mean(diff), centroids2)
 }

@@ -34,31 +34,20 @@ cluster <- function(analysis_dir, default_pref, lib) {
 
 # Perform the final clustering with DBSCAN:
 clusterDBSCAN <- function(refnames, summary_matrix,scoresV) {
-  #Clustering with automatic epsilon calclulation:
-  r1 <- remove_outliers(summary_matrix[,1])
-  r2 <- remove_outliers(summary_matrix[,2])
-  rr <- cbind(r1,r2)
-  
-  array <- c()
-  # Calculate the coefficient for the eps:
-  for (i in 1:length(libs)) {
-    array <- c(array,dim(scoresV[[i]])[1]-num_ref_points-4) 
-  }
-  
-  #k <- sum(array)/(( min(array) + sum(array) )/2)
-  #eps <- k+( max(r1,na.rm=T) - min(r1,na.rm=T) )*( max(r2,na.rm=T) - min(r2,na.rm=T) ) / (dim(summary_matrix)[1])
-  eps <- quantile(dist(mds16S),probs=0.005)#0.025)
-  tmp_clusters <- dbscan(summary_matrix[sample.int(nrow(summary_matrix)),],MinPts=1,  eps)
+  eps <- quantile(dist(summary_matrix),probs=0.005)[[1]] #0.025)
+  #tmp_clusters <- dbscan(summary_matrix[sample.int(nrow(summary_matrix)),],MinPts=2,  eps=eps)
+  tmp_clusters <- dbscan(summary_matrix,MinPts=1,  eps=eps)
   #tmp_clusters <- dbscan(summary_matrix[sample.int(nrow(summary_matrix)),],MinPts=1,  eps*0.01)
+  
   #flag <- F
   #while(flag==F) {
   #  # Clustering the points using DBSCAN method:
-  #  tmp_clusters <- dbscan(summary_matrix[sample.int(nrow(summary_matrix)),],MinPts=1,  eps*0.01)
+  #  tmp_clusters <- dbscan(summary_matrix,MinPts=1,  eps=eps)
   #  
   #  for (i in seq(1,length(tmp_clusters$cluster))) {
   #    #if ( length(which(tmp_clusters$cluster == i)) > 10 ) {
   #    if ( length(getRefOTUNum(refnames, rownames(summary_matrix)[which(tmp_clusters$cluster == i)] )) > 1) {
-  #      eps <- eps - 0.001
+  #      eps <- eps/10
   #      if (eps < 0) {
   #        break
   #      }
@@ -68,7 +57,7 @@ clusterDBSCAN <- function(refnames, summary_matrix,scoresV) {
   #      flag = T
   #    }
   #  } 
-    
+  #  
   #  if (flag == T) {
   #    break
   #  }
@@ -94,3 +83,31 @@ getRefOTUNum <- function(ref_points, otu) {
   }
   ans
 }
+
+# Call clustering program
+cluster2 <- function(analysis_dir, default_pref, lib, num) {
+  # Denoising:
+  denoisedlib <- paste(analysis_dir, "/", basename(lib), "_denoised", sep='')
+  system(paste(usearch7, "-fastq_filter", lib,  "-fastaout", denoisedlib, "-fastq_truncqual 15 -fastq_trunclen 250"))
+  # Dereplication:
+  dreplib <- paste(denoisedlib, "_drep", sep='')
+  system(paste(usearch7, "-derep_fulllength", denoisedlib, "-output", dreplib, "-sizeout"))
+  # Pre-clustering:
+  preclustlib <- paste(dreplib, "_pre", sep='')
+  system(paste(usearch7, "-cluster_smallmem", dreplib, "-centroids", preclustlib, "-sizeout -id 0.99 -maxdiffs 1"))
+  # Sorting (remove singletons):
+  sortlib <- paste(preclustlib, "_sorted", sep='')
+  system(paste(usearch7, "-sortbysize", preclustlib, "-output", sortlib, "-minsize 2"))
+  # Clustering:
+  clusterlib <- paste(sortlib, "_clustered", sep='')
+  system(paste(usearch7, "-cluster_otus", sortlib, "-otus", clusterlib, "-minsize 2"))
+  # Filtering chimeric sequences:
+  nochimericlib <- paste(clusterlib, "_nochimeric", sep='')
+  system(paste(usearch7, "-uchime_ref", clusterlib, "-db", ref16S, "-strand plus -nonchimeras", nochimericlib))
+  # python python_scripts/fasta_number.py ../../metamp/analysis/SRR072221_forward.fastq_denoised_drep_pre_sorted_clustered_nochimeric OTU_ > otus.fa
+  finalotus <- paste(nochimericlib, "_otus.fasta", sep='')
+  system(paste("python python_scripts/fasta_number.py", nochimericlib, paste("OTU_",num,'_',sep=''), ">", finalotus))
+  # ../usearch7.0.1090_i86osx32 -usearch_global ../../metamp/analysis/SRR072221_forward.fastq_denoised -db otus.fa -strand plus -id 0.97 -uc map.uc
+  finalotus
+}
+

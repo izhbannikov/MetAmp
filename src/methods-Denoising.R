@@ -3,7 +3,7 @@ denoise <- function(infiles,libtype, outprefix) {
   # Calls SeqyClean to rid off noise:
   if (libtype == "454") {
     # Denoise:
-    system(paste(denoise_app, "-454", infiles[1], "-o", outprefix, "-qual","--fasta_output"))
+    system(paste(denoise_app, "-454", infiles[1], "-o", outprefix, "-qual 30 30","--fasta_output -minimum_read_length 250"))
     # Convert to fasta:
   } else if (libtype== "pe") {
     system(paste(denoise_app, "-1", infiles[1], "-2", infile[2], "-o", outprefix))
@@ -12,62 +12,15 @@ denoise <- function(infiles,libtype, outprefix) {
   }
 }
 
-denoise454 <- function(denoise_app, dir_path, lib1, lib2, lib3, lib4, lib5, lib6, lib7, lib8, lib9, analysis_path, default_pref) {
-  if(lib1 != "") {
-    system( paste(denoise_app, "-454", paste(dir_path,lib1,sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV1",sep=''), sep=' '))
-  }
-  if(lib2 != "") {
-    system( paste(denoise_app, "-454", paste(dir_path,lib2,sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV2",sep=''), sep=' '))
-  }
-  if(lib3 != "") {
-    system( paste(denoise_app, "-454", paste(dir_path,lib3,sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV3",sep=''), sep=' '))
-  }
-  if(lib4 != "") {
-    system( paste(denoise_app, "-454", paste(dir_path,lib4,sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV4",sep=''), sep=' '))
-  }
-  if(lib5 != "") {
-    system( paste(denoise_app, "-454", paste(dir_path,lib5,sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV5",sep=''), sep=' '))
-  }
-  if(lib6 != "") {
-    system( paste(denoise_app, "-454", paste(dir_path,lib6,sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV6",sep=''), sep=' '))
-  }
-  if(lib7 != "") {
-    system( paste(denoise_app, "-454", paste(dir_path,lib7,sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV7",sep=''), sep=' '))
-  }
-  if(lib8 != "") {
-    system( paste(denoise_app, "-454", paste(dir_path,lib8,sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV8",sep=''), sep=' '))
-  }
-  if(lib9 != "") {
-    system( paste(denoise_app, "-454", paste(dir_path,lib9,sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV9",sep=''), sep=' '))
-  }
-}
-
-denoiseIllumina <- function(denoise_app, dir_path, lib1, lib2, lib3, lib4, lib5, lib6, lib7, lib8, lib9, analysis_path, default_pref) {
-  if(lib1 != "") {
-    system( paste(denoise_app, "-U", paste(analysis_path, "/", default_pref, "_1.extendedFrags.fastq", sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV1",sep=''), sep=' ')) #"-i64"
-  }
-  if(lib2 != "") {
-    system( paste(denoise_app, "-U", paste(analysis_path, "/", default_pref, "_2.extendedFrags.fastq", sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV2",sep=''), sep=' '))
-  }
-  if(lib3 != "") {
-    system( paste(denoise_app, "-U", paste(analysis_path, "/", default_pref, "_3.extendedFrags.fastq", sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV3",sep=''), sep=' '))
-  }
-  if(lib4 != "") {
-    system( paste(denoise_app, "-U", paste(analysis_path, "/", default_pref, "_4.extendedFrags.fastq", sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV4",sep=''), sep=' '))
-  }
-  if(lib5 != "") {
-    system( paste(denoise_app, "-U", paste(analysis_path, "/", default_pref, "_5.extendedFrags.fastq", sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV5",sep=''), sep=' '))
-  }
-  if(lib6 != "") {
-    system( paste(denoise_app, "-U", paste(analysis_path, "/", default_pref, "_6.extendedFrags.fastq", sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV6",sep=''), sep=' '))
-  }
-  if(lib7 != "") {
-    system( paste(denoise_app, "-U", paste(analysis_path, "/", default_pref, "_7.extendedFrags.fastq", sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV7",sep=''), sep=' '))
-  }
-  if(lib8 != "") {
-    system( paste(denoise_app, "-U", paste(analysis_path, "/", default_pref, "_8.extendedFrags.fastq", sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV8",sep=''), sep=' '))
-  }
-  if(lib9 != "") {
-    system( paste(denoise_app, "-U", paste(analysis_path, "/", default_pref, "_9.extendedFrags.fastq", sep=''), "-qual", "-o", paste(analysis_path, "/", default_pref, "_denoised_libV9",sep=''), sep=' '))
-  }
+removeChimeras <- function(infile_reads, infile_uchime) {
+  # Looking for chimeras:
+  system(paste(usearch,"-uchime_ref", infile_reads, "-db", ref16S, "-uchimeout", infile_uchime, "-strand plus"))
+  chimes <- read.table(infile_uchime)
+  reads <- read.fasta(infile_reads)
+  reads_to_write <- reads[chimes[which(chimes$V17=='N'),]$V2]
+  names_to_write <- chimes[which(chimes$V17=='N'),]$V2
+  
+  system(paste("rm", infile_reads)) # Remove old file
+  write.fasta(reads_to_write, names_to_write, infile_reads) # Write chimera-free secs
+  
 }

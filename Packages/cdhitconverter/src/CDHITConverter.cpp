@@ -6,6 +6,7 @@
 #include <map>
 #include <vector>
 #include <Rcpp.h>
+#include <arpa/inet.h>
 
 #define SFF_MAGIC_NUM   0x2e736666 /* ".sff" */
 

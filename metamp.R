@@ -35,33 +35,16 @@ writeMessage(paste("Analysis path: ", analysis_path), logfile, F)
 writeMessage("Starting analysis...", logfile, T)
 
 #----Data denoising------#
+print(paste("Running clustering application", cluster_app, "...") )
+writeMessage(paste("Running clustering application", cluster_app, "..."), logfile, T)
 work_libs <- matrix(nrow=length(libs), ncol=3)
 for (i in seq(libs)) {
-  if (denoise_data == T) {
-    ans <- denoise(infiles=libs[i],
-                   libtype="454",
-                   outprefix=paste(analysis_dir, '/', "work_lib", i, sep=''))
-  } else {
-    # Checking if provided files are in Fasta format:
-    #ans <- tryCatch(readFastq(paste(analysis_dir, '/', "work_lib", i, ".fasta", sep='')), error=function(e) {e <- -1}, finally=function(ans) {ans <--1})
-    
-    #if (ans == -1) {
-    # If so, we just directly copy them into analysis directory:
-    system(paste("cp", libs[i], paste(analysis_dir, '/', "work_lib", i, ".fasta", sep='')))
-    #} else {
-    #  # Otherwise, rase an error and stop:
-    #  print("Error! Provided sequences not in Fasta format!")
-    #}
-  }
-  work_libs[i,1] <- paste(analysis_dir, '/', "work_lib", i, ".fasta", sep='')
+  work_libs[i,1] <- libs[i] #paste(analysis_dir, '/', "work_lib", i, ".fasta", sep='')
   work_libs[i,2] <- libs[i]
 }
-
-print(paste("Running clustering application", cluster_app, "...") )
-registerDoMC(length(work_libs)) # Register cores and run in parallel
-foreach(i=1:dim(work_libs)[1]) %dopar%
-  cluster(analysis_dir, default_pref, work_libs[i,1])
-
+for(i in 1:dim(work_libs)[1]) {
+  work_libs[i,1] <- cluster2(analysis_dir, default_pref, work_libs[i,1], num=i)
+}
 
 #==============Read distance matrices==================#
 writeMessage("Distance matrix for 16S gene sequences...", logfile, T)
@@ -69,7 +52,9 @@ score16S <- generate_distance_matrix16S(ref16S)
 writeMessage("Done!", logfile, T)
 
 writeMessage("Distance matrix for guide and amplicon reads...", logfile, T)
-scoresV <- readDistanceMatrices(work_libs) # This function reads pre-computed distance matrices sequentially
+distancesEmp <- readDistanceMatrices(work_libs)
+scoresV <- distancesEmp[[1]] # This function reads pre-computed distance matrices sequentially
+merged_table <- distancesEmp[[2]]
 writeMessage("Done!", logfile, T)
 
 #================Compute MDS for 16S=============#
@@ -95,13 +80,13 @@ writeMessage("Assigning the final OTUs...", logfile, T)
 OTUS <- assignClusters(tmp_clusters, work_libs)
 writeMessage("Done!", logfile, T)
 
-writeMessage("Computing large OTUs...", logfile, T)
-largeOTUS <- computeLargeClusters(rownames(score16S), OTUS) 
-writeMessage("Done!", logfile, T)
-
-writeMessage("Writing output data...", logfile, T)
-write_clust_data(paste(dir_path, analysis_dir, '/', final_clust_filename, sep=''))
-write_coordinates(paste(dir_path, analysis_dir, '/', coord_filename, sep=''))
+#writeMessage("Computing large OTUs...", logfile, T)
+#largeOTUS <- computeLargeClusters(rownames(score16S), OTUS) 
+#writeMessage("Done!", logfile, T)
+#
+#writeMessage("Writing output data...", logfile, T)
+#write_clust_data(paste(dir_path, analysis_dir, '/', final_clust_filename, sep=''))
+#write_coordinates(paste(dir_path, analysis_dir, '/', coord_filename, sep=''))
 
 #=============End of analysis===============#
 writeMessage("End of analysis", logfile, T)
