@@ -5,13 +5,13 @@ all : check install
 
 check :
 	@echo "Checking for R..."
-	@command -v R > /dev/null 2>&1 || { echo > &2 "I require R but it's not installed.  Aborting."; exit 1; }
+	@command -v R >/dev/null 2>&1 || { echo >&2 "I require R but it's not installed.  Aborting."; exit 1; }
 	@echo "Done!"
 	@echo "Checking for GCC..."
-	@command -v gcc > /dev/null 2>&1 || { echo > &2 "I require GCC but it's not installed.  Aborting."; exit 1; }
+	@command -v gcc >/dev/null 2>&1 || { echo >&2 "I require GCC but it's not installed.  Aborting."; exit 1; }
 	@echo "Done!"
 	@echo "Checking for Python..."
-	@command -v python > /dev/null 2>&1 || { echo > &2 "I require Python but it's not installed.  Aborting."; exit 1; }
+	@command -v python >/dev/null 2>&1 || { echo >&2 "I require Python but it's not installed.  Aborting."; exit 1; }
 	@echo "Done!"
 	
 install :
