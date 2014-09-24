@@ -8,14 +8,25 @@ normalizeAmplicons <- function(scoresV, mds16S, num_ref_points) {
   #
   norm_data_v <- list()
   for (i in 1:length(libs)) {
-    norm_data_v[[i]] <- process_data(imatrix=scoresV[[i]], mds16s=mds16S, nrp=num_ref_points)
-    if (i == 1) {
-      summary_matrix <- rbind(summary_matrix, norm_data_v[[1]][[1]][1:num_ref_points,])
-      summary_matrix <- summary_matrix[2:dim(summary_matrix)[1],] # Removing the first row
-      rownames(summary_matrix) <- rownames(mds16S)
+    
+    if (dim(scoresV[[i]])[1]==dim(score16S)[1]) { # All OTUS are merged with references!
+      if (i == 1) {
+        summary_matrix <- rbind(summary_matrix, mds16S[1:num_ref_points,])
+        summary_matrix <- summary_matrix[2:dim(summary_matrix)[1],] # Removing the first row
+        rownames(summary_matrix) <- rownames(mds16S)
+      }    
+    } else {
+      norm_data_v[[i]] <- process_data(imatrix=scoresV[[i]], mds16s=mds16S, nrp=num_ref_points)
+      if (i == 1) {
+        summary_matrix <- rbind(summary_matrix, norm_data_v[[1]][[1]][1:num_ref_points,])
+        summary_matrix <- summary_matrix[2:dim(summary_matrix)[1],] # Removing the first row
+        rownames(summary_matrix) <- rownames(mds16S)
+      }
+      summary_matrix <- rbind(summary_matrix, norm_data_v[[i]][[2]])
     }
-    summary_matrix <- rbind(summary_matrix, norm_data_v[[i]][[2]])
+  
   }
+  
   summary_matrix
 }
 
