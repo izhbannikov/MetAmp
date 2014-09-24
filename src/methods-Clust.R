@@ -108,6 +108,10 @@ cluster2 <- function(analysis_dir, default_pref, lib, num) {
   finalotus <- paste(nochimericlib, "_otus.fasta", sep='')
   system(paste("python python_scripts/fasta_number.py", nochimericlib, paste("OTU_",num,'_',sep=''), ">", finalotus))
   # ../usearch7.0.1090_i86osx32 -usearch_global ../../metamp/analysis/SRR072221_forward.fastq_denoised -db otus.fa -strand plus -id 0.97 -uc map.uc
+  # Assign reads to OTUS:
+  maptable <- paste(analysis_dir, "/", "map_", num, ".uc", sep='')
+  system(paste(usearch7, "-usearch_global", denoisedlib, "-db", finalotus, "-strand plus -id 0.97 -uc", maptable))
+  
   finalotus
 }
 
