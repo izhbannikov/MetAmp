@@ -169,33 +169,16 @@ remove_outliers <- function(x, na.rm = TRUE, ...) {
 
 write_clust_data <- function(filename) {
   
-  read.ids <- list()
-  sequences <- c()
-  for (i in 1:dim(work_libs)[1]) {
-    read.ids[[i]] <- c(names(read.fasta(work_libs[i,1])))
-    sequences <- c(sequences, length(names(read.fasta(work_libs[i,1]))))
-  }
   header <- paste("File(s):", paste(basename(work_libs[1:dim(work_libs)[1],2]), collapse=' '))
   write(header, file=filename,append=F)
-  header <- paste("Sequences:", paste(sequences, collapse=' '))
+  header <- paste("Total Clusters:", length(OTUS))
   write(header, file=filename,append=T)
   write('', file=filename,append=T)
-  header <- paste("distance cutoff:", cit)
-  write(header, file=filename,append=T)
-  header <- paste("Total Clusters:", length(largeOTUS))
-  write(header, file=filename,append=T)
   
-  
-  for (i in 1:length(largeOTUS)) {
-    str <- c()
-    for (j in 1:length(read.ids)) {
-      reads <- read.ids[[j]][which(read.ids[[j]] %in% largeOTUS[[i]])]
-      num_reads <- length(reads)
-      str <- c(i, basename(work_libs[j,2]), num_reads, reads)
-      if (str[3] != 0) {
-        write(paste(str, collapse=' '),file=filename,append=T)
-      }
-    }
+  for (i in 1:length(OTUS)) {
+    str <- paste("OTU_",i,sep='') 
+    otus <- paste(str_replace_all(OTUS[[i]],'\t','.'), collapse=',')
+    write(paste(str,otus),file=filename,append=T,sep = '')
   }
 }
 

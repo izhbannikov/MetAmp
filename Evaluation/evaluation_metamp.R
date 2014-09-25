@@ -22,7 +22,7 @@ library(tripack) # For triangulation
 library(RANN) # For kd-tree
 library(fpc) # For clustering using the DBSCAN algorithm
 library(amap)
-library(doMC) # For parallel clustering
+library(stringr)
 library(foreach) # For parallel clustering
 library(ShortRead) # For manipulations with sequences
 #----Create "analysis" directory------#
@@ -72,7 +72,9 @@ writeMessage("Done!", logfile, T)
 #=============Perform final clustering with DBSCAN================#
 # Also is an important stage. We have to cluster everything after guide sequences carried back the empirical amplicons.
 writeMessage("clustering with DBSCAN...", logfile, T)
-tmp_clusters <- clusterDBSCAN(rownames(score16S), summary_matrix,scoresV)
+cluster_matrix <- summary_matrix[1:dim(score16S)[1],]
+cluster_matrix <- rbind(cluster_matrix, summary_matrix[(dim(score16S)[1]+5):dim(summary_matrix)[1],])
+tmp_clusters <- clusterDBSCAN(rownames(score16S), cluster_matrix,scoresV)
 writeMessage("Done!", logfile, T)
 
 #=============Assign the final OTUs================#
@@ -80,13 +82,9 @@ writeMessage("Assigning the final OTUs...", logfile, T)
 OTUS <- assignClusters(tmp_clusters, work_libs)
 writeMessage("Done!", logfile, T)
 
-#writeMessage("Computing large OTUs...", logfile, T)
-#largeOTUS <- computeLargeClusters(rownames(score16S), OTUS) 
-#writeMessage("Done!", logfile, T)
-#
-#writeMessage("Writing output data...", logfile, T)
-#write_clust_data(paste(dir_path, analysis_dir, '/', final_clust_filename, sep=''))
-#write_coordinates(paste(dir_path, analysis_dir, '/', coord_filename, sep=''))
+writeMessage("Writing output data...", logfile, T)
+write_clust_data(paste(dir_path, analysis_dir, '/', final_clust_filename, sep=''))
+write_coordinates(paste(dir_path, analysis_dir, '/', coord_filename, sep=''))
 
 #=============End of analysis===============#
 writeMessage("End of analysis", logfile, T)

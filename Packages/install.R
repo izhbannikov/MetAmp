@@ -9,12 +9,13 @@ if("tripack" %in% rownames(installed.packages()) == FALSE) {install.packages("tr
 if("RANN" %in% rownames(installed.packages()) == FALSE) {install.packages("RANN", repos=default_repo)}
 if("fpc" %in% rownames(installed.packages()) == FALSE) {install.packages("fpc", repos=default_repo)}
 if("amap" %in% rownames(installed.packages()) == FALSE) {install.packages("amap", repos=default_repo)}
-if("doMC" %in% rownames(installed.packages()) == FALSE) {install.packages("doMC", repos=default_repo)}
 if("foreach" %in% rownames(installed.packages()) == FALSE) {install.packages("foreach", repos=default_repo)}
 if("ShortRead" %in% rownames(installed.packages()) == FALSE) {
   source("http://bioconductor.org/biocLite.R")
   biocLite("ShortRead")
 }
 if("Rcpp" %in% rownames(installed.packages()) == FALSE) {install.packages("Rcpp", repos=default_repo)}
+if("stringr" %in% rownames(installed.packages()) == FALSE) {install.packages("stringr", repos=default_repo)}
 #
 print("Done!")
+
