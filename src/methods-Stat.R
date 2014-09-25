@@ -5,7 +5,7 @@ assignClusters <- function(tmp_clusters, work_libs) {
   # Then assign each read to its cluster:
   tmp_final_clusters <- vector(mode="list", length=length(unique(tmp_clusters$cluster)))
   for (i in 1:length(unique(tmp_clusters$cluster))) {
-    core <- rownames(summary_matrix)[which(tmp_clusters$cluster == i)]
+    core <- rownames(cluster_matrix)[which(tmp_clusters$cluster == i)]
     tmp_final_clusters[[i]] <- core
     for (j in 1:length(merged_table)) {
       for (k in 1:length(core)) {
