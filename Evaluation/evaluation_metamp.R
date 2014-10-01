@@ -16,7 +16,6 @@ source("src/methods-Misc.R")
 source("src/methods-Triangulation.R")
 # Libraries with functions used in MetAmp
 library(seqinr) # For manupulations with sequences
-library(CDHITConverter) # For translating the CD-HIT's output files into machine-readable format
 library(BLASTParser) # Parses BLAST output file
 library(tripack) # For triangulation
 library(RANN) # For kd-tree
@@ -25,6 +24,7 @@ library(amap)
 library(stringr)
 library(foreach) # For parallel clustering
 library(ShortRead) # For manipulations with sequences
+library(MASS)
 #----Create "analysis" directory------#
 analysis_path <- paste(dir_path, analysis_dir,sep='')
 system(paste("mkdir", analysis_path))

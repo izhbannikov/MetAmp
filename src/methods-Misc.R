@@ -37,9 +37,9 @@ read16S <- function(infile, imatrix) {
   #Make distance matrix out of identity matrix:
   dist_matrix16S <- matrix16S
   #Make multidimensional scaling in order to place 16S sequences into the plane:
-  mds16S <- cmdscale(dist_matrix16S) # Classical multidimensional scaling of a data matrix. Also known as principal coordinates analysis (Gower, 1966). 
-  #mds16S <- isoMDS(dist_matrix16S)$points # NMDS
-  
+  #mds16S <- cmdscale(dist_matrix16S) # Classical multidimensional scaling of a data matrix. Also known as principal coordinates analysis (Gower, 1966). 
+  #mds16S <- isoMDS(dist_matrix16S,maxit = 500,tol = 0.00001)$points # NMDS
+  mds16S <- sammon(dist_matrix16S,niter = 1000)$points # NMDS
   # Here we add corner points in order to make sure that each empirical point will be inside of some triangle:
   A <- c(min(mds16S[,1])-abs(min(mds16S[,1]))/5, min(mds16S[,2])-abs(min(mds16S[,2])/5)) # The most lower-left point
   B <- c(min(mds16S[,1])-abs(min(mds16S[,1]))/5, max(mds16S[,2])+abs(max(mds16S[,2])/5)) # The most upper-left point
@@ -65,8 +65,9 @@ process_data <- function(imatrix, mds16s, nrp) {
   #Compute the distance matrix:
   dist_matrixV <- imatrix
   #Make multidimensional scaling:
-  mdsV <- cmdscale(dist_matrixV) #Classical multidimensional scaling of a data matrix. Also known as principal coordinates analysis (Gower, 1966).
-  #mdsV <- isoMDS(dist_matrixV)$points #NMDS
+  #mdsV <- cmdscale(dist_matrixV) #Classical multidimensional scaling of a data matrix. Also known as principal coordinates analysis (Gower, 1966).
+  #mdsV <- isoMDS(dist_matrixV,maxit = 500,tol=0.00001)$points #NMDS
+  mdsV <- sammon(dist_matrixV,niter = 1000)$points #NMDS
   # Here we add corner points in order to make sure that each empirical point will be inside of some triangle:
   A <- c(min(mdsV[,1])-abs(min(mdsV[,1]))/5, min(mdsV[,2])-abs(min(mdsV[,2])/5)) # The most lower-left point
   B <- c(min(mdsV[,1])-abs(min(mdsV[,1]))/5, max(mdsV[,2])+abs(max(mdsV[,2])/5)) # The most upper-left point

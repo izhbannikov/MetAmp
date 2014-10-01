@@ -1,9 +1,0 @@
-Package: CDHITConverter
-Type: Package
-Title: Converts CD-HIT output (file .clstr) into R-readable format.
-Version: 1.0
-Date: 2014-02-02
-Author: I.Y. Zhbannikov
-Maintainer: I.Y. Zhbannikov <i.zhbannikov@gmail.com>
-Description: Converts CD-HIT output (file .clstr) into R-readable format.
-License: GPL

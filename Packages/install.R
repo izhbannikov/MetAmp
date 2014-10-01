@@ -16,6 +16,7 @@ if("ShortRead" %in% rownames(installed.packages()) == FALSE) {
 }
 if("Rcpp" %in% rownames(installed.packages()) == FALSE) {install.packages("Rcpp", repos=default_repo)}
 if("stringr" %in% rownames(installed.packages()) == FALSE) {install.packages("stringr", repos=default_repo)}
+if("MASS" %in% rownames(installed.packages()) == FALSE) {install.packages("MASS", repos=default_repo)}
 #
 print("Done!")
 

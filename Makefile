@@ -26,12 +26,6 @@ install :
 	R CMD INSTALL $(package_dir)/blastparser
 	@echo "Done!"
 	
-	@echo "Installing CDHITConverter package..."
-	R CMD INSTALL $(package_dir)/cdhitconverter
-	@rm -rf R CMD INSTALL $(package_dir)/cdhitconverter/src/*.o
-	@rm -rf R CMD INSTALL $(package_dir)/cdhitconverter/src/*.so
-	@echo "Done!"
-	
 	@echo "Unzipping data files..."
 	@rm -rf data/__MACOSX
 	@rm -rf data/LTP
