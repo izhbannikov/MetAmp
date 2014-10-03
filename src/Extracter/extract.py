@@ -29,7 +29,7 @@ forward_primer = "GAATTGACGGGGRCCC" # -m=2 -p=-5 -g=-1
 reverse_primer = "TACGGYTACCTTGTTAYGACTT"
  
 
-Last change was made on 2014/08/30
+Last change was made on 2014/10/02
 
 """
 
@@ -79,7 +79,6 @@ class Extract :
 		cnt = 0 # Counter
 		for record in SeqIO.parse(handle, "fasta") :
 			cnt += 1
-			#if len(record.seq) < 1300 : # Be careful: sequence length must be at least 1300 base pairs!
 			#Try to find a forward primer
 			v_region_found = False
 			# We generate primers from ambiguity table:
@@ -112,17 +111,42 @@ class Extract :
 					v_region_found = True
 					prev_start = start_pos
 					prev_stop = stop_pos
-				else : # Use previously found good values:
-					start_pos = prev_start
-					stop_pos = prev_stop
-					SeqIO.write(record[start_pos:stop_pos], output_handle, "fasta")
-					v_region_found = True
+				#else : # Use previously found good values:
+				#	start_pos = prev_start
+				#	stop_pos = prev_stop
+				#	SeqIO.write(record[start_pos:stop_pos], output_handle, "fasta")
+				#	v_region_found = True
 			if v_region_found == False :
-				start_pos = prev_start
-				stop_pos = prev_stop
-				SeqIO.write(record[start_pos:stop_pos], output_handle, "fasta")
-				v_region_found = True
-			print record.id, start_pos, stop_pos
+				# Try reverse complement
+				revcomp = record.reverse_complement()
+				for p in forward_primers_set :
+					results = start.smgb(revcomp.seq,p)
+					positions.append(results[0])
+					scores.append(results[1])
+				start_pos = positions[scores.index(max(scores))]
+				if start_pos != -1 : # Start found! Let's try to find stop position
+					start_pos += len(self.forward_primer)
+					#Try to find a reverse primer:
+					reverse_primers_set = Primer().get_primer_set(self.reverse_primer)
+					stop = Smgb()
+					stop.set_params(self.match,self.mismatch,self.gap)
+					scores = []
+					positions = []
+					for p in reverse_primers_set :
+						results = stop.smgb(revcomp.seq,Seq(self.reverse_primer, generic_dna).reverse_complement())
+						positions.append(results[0])
+						scores.append(results[1])
+						stop_pos = positions[scores.index(max(scores))]
+					if stop_pos > start_pos + 2*len(self.forward_primer) : 
+						SeqIO.write(record[start_pos:stop_pos].reverse_complement(), output_handle, "fasta")
+						v_region_found = True
+						prev_start = start_pos
+						prev_stop = stop_pos
+			#	start_pos = prev_start
+			#	stop_pos = prev_stop
+			#	SeqIO.write(record[start_pos:stop_pos], output_handle, "fasta")
+			#	v_region_found = True
+			print record.id, start_pos, stop_pos, v_region_found
 			self.start_avg.append(start_pos)
 			self.stop_avg.append(stop_pos)
 			self.length_avg.append(stop_pos-start_pos)
