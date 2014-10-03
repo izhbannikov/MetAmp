@@ -52,7 +52,7 @@ score16S <- generate_distance_matrix16S(ref16S)
 writeMessage("Done!", logfile, T)
 
 writeMessage("Distance matrix for guide and amplicon reads...", logfile, T)
-distancesEmp <- readDistanceMatrices(work_libs)
+distancesEmp <- readDistanceMatrices(ref16S, work_libs)
 scoresV <- distancesEmp[[1]] # This function reads pre-computed distance matrices sequentially
 merged_table <- distancesEmp[[2]]
 writeMessage("Done!", logfile, T)

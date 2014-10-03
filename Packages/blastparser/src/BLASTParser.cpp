@@ -109,12 +109,15 @@ RcppExport SEXP BuildIdentityMatrix(SEXP fname)
 	return Rcpp::List::create(imatrix, Rcpp::wrap(names));
 }
 
-RcppExport SEXP BuildIdentityMatrixUSEARCH(SEXP fnameU, SEXP sz) 
+RcppExport SEXP BuildIdentityMatrixUSEARCH(SEXP fnameU, SEXP sz /*Total reads*/, SEXP sz_ref /*Total reference reads*/) 
 {
 	std::string line;
 	std::string filename = Rcpp::as<std::string>(fnameU);
     std::ifstream in(filename.c_str());
-    int n = as<int>(sz);
+    
+    int n = as<int>(sz); // Total library size
+    int n_ref = as<int>(sz_ref); // Reference library size
+    int n_emp = n - n_ref; // Number of empirical reads
     
 	long i = 0;
 	NumericMatrix imatrix(n, n);
@@ -157,11 +160,27 @@ RcppExport SEXP BuildIdentityMatrixUSEARCH(SEXP fnameU, SEXP sz)
     			imatrix(_i, _j) = 0.0;
     			continue;
     		}
-    		
+    		// Calculating distance:
     		imatrix(_i, _j) = 1.0-imatrix(_i, _j);
-    		
-    		//if (imatrix(_i, _j) == 0)
-    		//	imatrix(_i, _j) = 0.001;
+    	}
+	}
+	
+	if (n_emp != 0) {
+		//std::cout << n_ref << " " << n_emp << " " << n << std::endl;
+		// Handle empirical points:
+		for (int ii=n_ref; ii<n; ii++) {
+			for (int jj=0; jj<n_ref/2; jj++) {
+				if (ii != jj) {
+					if (imatrix(ii,jj) > imatrix(ii,jj+n_ref/2)) {
+						//std::cout << imatrix(ii,jj) << " " << imatrix(ii,jj+n_ref/2) << " ";
+						imatrix(ii,jj) = imatrix(ii,jj+n_ref/2);
+						//std::cout << imatrix(ii,jj) << std::endl;
+					} else {
+						imatrix(ii,jj+n_ref/2) = imatrix(ii,jj);
+					}
+					imatrix(jj,ii) = imatrix(ii,jj);
+				}
+			}
 		}
 	}
 	

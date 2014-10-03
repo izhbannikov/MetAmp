@@ -11,18 +11,23 @@
 dir_path <- "~/Projects/metamp/" # Working directory where all analysis data will be stored
 setwd(dir_path)
 # Provide your data here (can be raw or preprocessed libs, program assumes one file for each region):
-libs <- c("Evaluation/data/staggered/SRR072221_forward.fastq", # V1-3
-          "Evaluation/data/staggered/SRR072237_forward.fastq", # V3-5
-          "Evaluation/data/staggered/SRR072236_forward.fastq") # V6-9
+libs <- c("Evaluation/data/staggered/SRR072223_V13V31_1.fastq", # V1-3
+          "Evaluation/data/staggered/SRR072223_V35V53_1.fastq", # V3-5
+          "Evaluation/data/staggered/SRR072223_V69V96_1.fastq") # V6-9
+#libs <- c("Evaluation/data/even/SRR072220_V13V31.fastq", # V1-3
+#          "Evaluation/data/even/SRR072220_V35V53.fastq", # V3-5
+#          "Evaluation/data/even/SRR072239_V69V96.fastq") # V6-9
+
 # Reference sequences:
 #ref16S <- "data/LTP/LTP-10271.fasta"
 #refs <- c("data/LTP/LTP-10271_V13.fasta", # V1-3
 #          "data/LTP/LTP-10271_V35.fasta", # V3-5
 #          "data/LTP/LTP-10271_V69.fasta") # V6-9
-ref16S <- "Evaluation/data/16S.fasta"
-refs <- c("Evaluation/data/V13.fasta", # V1-3
-          "Evaluation/data/V35.fasta", # V3-5
-          "Evaluation/data/V69.fasta") # V6-9
+ref16S <- "Evaluation/data/16S_gold_hmc.fasta"
+refs <- c("Evaluation/data/16S_gold_hmc_V13V31.fasta", # V1-3
+          "Evaluation/data/16S_gold_hmc_V35V53.fasta", # V3-5
+          "Evaluation/data/16S_gold_hmc_V69V96.fasta") # V6-9
 
-source("evaluation_config.R") # Link the configuration file with default program parameters and path to the data
-source("evaluation_metamp.R") # Link the analysis pipeline
+source("config.R") # Link the configuration file with default program parameters and path to the data
+source("metamp.R") # Link the analysis pipeline
+
