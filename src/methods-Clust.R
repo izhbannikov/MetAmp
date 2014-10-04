@@ -103,7 +103,7 @@ cluster2 <- function(analysis_dir, default_pref, lib, num) {
   system(paste(usearch7, "-cluster_otus", sortlib, "-otus", clusterlib, "-minsize 2"))
   # Filtering chimeric sequences:
   nochimericlib <- paste(clusterlib, "_nochimeric", sep='')
-  system(paste(usearch7, "-uchime_ref", clusterlib, "-db", ref16S, "-strand plus -nonchimeras", nochimericlib))
+  system(paste(usearch7, "-uchime_ref", clusterlib, "-db", chime_ref, "-strand plus -nonchimeras", nochimericlib))
   # python python_scripts/fasta_number.py ../../metamp/analysis/SRR072221_forward.fastq_denoised_drep_pre_sorted_clustered_nochimeric OTU_ > otus.fa
   finalotus <- paste(nochimericlib, "_otus.fasta", sep='')
   system(paste("python python_scripts/fasta_number.py", nochimericlib, paste("OTU_",num,'_',sep=''), ">", finalotus))

@@ -34,3 +34,4 @@ final_clust_filename <- "clusters.clstr"
 # Output file with coordinates:
 coord_filename <- "coordinates.crd"
 max_threads <- 16
+chime_ref <- "data/gold/gold.fa"
