@@ -41,22 +41,26 @@ read16S <- function(infile, imatrix) {
   #mds16S <- isoMDS(dist_matrix16S,maxit = 500,tol = 0.00001)$points # NMDS
   mds16S <- sammon(dist_matrix16S,niter = 1000)$points # NMDS
   # Here we add corner points in order to make sure that each empirical point will be inside of some triangle:
-  A <- c(min(mds16S[,1])-abs(min(mds16S[,1]))/5, min(mds16S[,2])-abs(min(mds16S[,2])/5)) # The most lower-left point
-  B <- c(min(mds16S[,1])-abs(min(mds16S[,1]))/5, max(mds16S[,2])+abs(max(mds16S[,2])/5)) # The most upper-left point
-  C <- c(max(mds16S[,1])+abs(max(mds16S[,1])/5), max(mds16S[,2])+abs(max(mds16S[,2])/5)) # The most upper-right point
-  D <- c(max(mds16S[,1])+abs(max(mds16S[,1])/5), min(mds16S[,2])-abs(min(mds16S[,2]))/5) # The most lower-right point
-  ans <- matrix(0,nrow=4,ncol=2)
-  ans[1,1] <- A[1]
-  ans[1,2] <- A[2]
-  ans[2,1] <- B[1] 
-  ans[2,2] <- B[2]
-  ans[3,1] <- C[1]
-  ans[3,2] <- C[2]
-  ans[4,1] <- D[1]
-  ans[4,2] <- D[2]
-  rownames(ans) <- seq(4)
+  
+  #--Temporary comment:
+  #A <- c(min(mds16S[,1])-abs(min(mds16S[,1]))/100, min(mds16S[,2])-abs(min(mds16S[,2]))/100) # The most lower-left point
+  #B <- c(min(mds16S[,1])-abs(min(mds16S[,1]))/100, max(mds16S[,2])+abs(max(mds16S[,2]))/100) # The most upper-left point
+  #C <- c(max(mds16S[,1])+abs(max(mds16S[,1]))/100, max(mds16S[,2])+abs(max(mds16S[,2]))/100) # The most upper-right point
+  #D <- c(max(mds16S[,1])+abs(max(mds16S[,1]))/100, min(mds16S[,2])-abs(min(mds16S[,2]))/100) # The most lower-right point
+  #ans <- matrix(0,nrow=4,ncol=2)
+  #ans[1,1] <- A[1]
+  #ans[1,2] <- A[2]
+  #ans[2,1] <- B[1] 
+  #ans[2,2] <- B[2]
+  #ans[3,1] <- C[1]
+  #ans[3,2] <- C[2]
+  #ans[4,1] <- D[1]
+  #ans[4,2] <- D[2]
+  #rownames(ans) <- seq(4)
   # Append the rows to the multidimensional 16S matrix:
-  mds16S <- rbind(mds16S, ans)
+  #mds16S <- rbind(mds16S, ans)
+  #--End of temporary comment
+  
   mds16S
 }
 
@@ -69,31 +73,35 @@ process_data <- function(imatrix, mds16s, nrp) {
   #mdsV <- isoMDS(dist_matrixV,maxit = 500,tol=0.00001)$points #NMDS
   mdsV <- sammon(dist_matrixV,niter = 1000)$points #NMDS
   # Here we add corner points in order to make sure that each empirical point will be inside of some triangle:
-  A <- c(min(mdsV[,1])-abs(min(mdsV[,1]))/5, min(mdsV[,2])-abs(min(mdsV[,2])/5)) # The most lower-left point
-  B <- c(min(mdsV[,1])-abs(min(mdsV[,1]))/5, max(mdsV[,2])+abs(max(mdsV[,2])/5)) # The most upper-left point
-  C <- c(max(mdsV[,1])+abs(max(mdsV[,1])/5), max(mdsV[,2])+abs(max(mdsV[,2])/5)) # The most upper-right point
-  D <- c(max(mdsV[,1])+abs(max(mdsV[,1])/5), min(mdsV[,2])-abs(min(mdsV[,2]))/5) # The most lower-right point
-  ans <- matrix(0,nrow=4,ncol=2)
-  ans[1,1] <- A[1]
-  ans[1,2] <- A[2]
-  ans[2,1] <- B[1]
-  ans[2,2] <- B[2]
-  ans[3,1] <- C[1]
-  ans[3,2] <- C[2]
-  ans[4,1] <- D[1]
-  ans[4,2] <- D[2]
-  rownames(ans) <- seq(4)
   
+  #--Temporary comment:
+  #A <- c(min(mdsV[,1])-abs(min(mdsV[,1]))/100, min(mdsV[,2])-abs(min(mdsV[,2]))/100) # The most lower-left point
+  #B <- c(min(mdsV[,1])-abs(min(mdsV[,1]))/100, max(mdsV[,2])+abs(max(mdsV[,2]))/100) # The most upper-left point
+  #C <- c(max(mdsV[,1])+abs(max(mdsV[,1]))/100, max(mdsV[,2])+abs(max(mdsV[,2]))/100) # The most upper-right point
+  #D <- c(max(mdsV[,1])+abs(max(mdsV[,1]))/100, min(mdsV[,2])-abs(min(mdsV[,2]))/100) # The most lower-right point
+  #ans <- matrix(0,nrow=4,ncol=2)
+  #ans[1,1] <- A[1]
+  #ans[1,2] <- A[2]
+  #ans[2,1] <- B[1]
+  #ans[2,2] <- B[2]
+  #ans[3,1] <- C[1]
+  #ans[3,2] <- C[2]
+  #ans[4,1] <- D[1]
+  #ans[4,2] <- D[2]
+  #rownames(ans) <- seq(4)
+  #
   # We need to arrange mdsV to be in the same order like mds16S.
   # Here we are determining guide points:
-  mdsV <- rbind(mdsV, ans)
+  #mdsV <- rbind(mdsV, ans)
+  #--End of temporary comment
+  
   ref_points <- mdsV[rownames(mds16S),] # Guide points
   
   if (dim(ref_points)[1] != dim(mds16S)[1]) {
     cat("WARNING: the length of V reference array does not match to 16S")
   }
   
-  empir_points <- mdsV[!(rownames(mdsV) %in% rownames(mds16S)),] # Empirical clusters
+  empir_points <- mdsV[!(rownames(mdsV) %in% rownames(mds16S)),] # Empirical points
   
   if (length(empir_points) == 2) { # But what is no empirical points left??
     empir_points <- matrix(empir_points, nrow=1, ncol=2, byrow=T)
@@ -104,6 +112,7 @@ process_data <- function(imatrix, mds16s, nrp) {
   #Finally, let us normalize the data:
   ans <- process_amplicon_data( mds16s, ref_points, empir_points)
   ans
+  
 }
 
 

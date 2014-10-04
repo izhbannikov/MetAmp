@@ -34,24 +34,24 @@ logfile <- paste(analysis_path, '/', "log.txt", sep='')
 writeMessage(paste("Analysis path: ", analysis_path), logfile, F)
 writeMessage("Starting analysis...", logfile, T)
 
-#----Data denoising------#
-print(paste("Running clustering application", cluster_app, "...") )
-writeMessage(paste("Running clustering application", cluster_app, "..."), logfile, T)
+#----Data preparation------#
+print(paste("Running preprocessing pipeline...") )
+writeMessage(paste("Running preprocessing pipeline..."), logfile, T)
 work_libs <- matrix(nrow=length(libs), ncol=3)
 for (i in seq(libs)) {
-  work_libs[i,1] <- libs[i] #paste(analysis_dir, '/', "work_lib", i, ".fasta", sep='')
+  work_libs[i,1] <- libs[i] 
   work_libs[i,2] <- libs[i]
 }
 for(i in 1:dim(work_libs)[1]) {
   work_libs[i,1] <- cluster2(analysis_dir, default_pref, work_libs[i,1], num=i)
 }
 
-#==============Read distance matrices==================#
-writeMessage("Distance matrix for 16S gene sequences...", logfile, T)
+#==============Builging distance matrices==================#
+writeMessage("Building distance matrix for 16S gene sequences...", logfile, T)
 score16S <- generate_distance_matrix16S(ref16S)
 writeMessage("Done!", logfile, T)
 
-writeMessage("Distance matrix for guide and amplicon reads...", logfile, T)
+writeMessage("Building distance matrix for guide and amplicon reads...", logfile, T)
 distancesEmp <- readDistanceMatrices(ref16S, work_libs)
 scoresV <- distancesEmp[[1]] # This function reads pre-computed distance matrices sequentially
 merged_table <- distancesEmp[[2]]
@@ -72,8 +72,11 @@ writeMessage("Done!", logfile, T)
 #=============Perform final clustering with DBSCAN================#
 # Also is an important stage. We have to cluster everything after guide sequences carried back the empirical amplicons.
 writeMessage("clustering with DBSCAN...", logfile, T)
-cluster_matrix <- summary_matrix[1:dim(score16S)[1],]
-cluster_matrix <- rbind(cluster_matrix, summary_matrix[(dim(score16S)[1]+5):dim(summary_matrix)[1],])
+#--Temporary commenting
+#cluster_matrix <- summary_matrix[1:dim(score16S)[1],]
+#cluster_matrix <- rbind(cluster_matrix, summary_matrix[(dim(score16S)[1]+5):dim(summary_matrix)[1],])
+#--End of temporary commenting
+cluster_matrix <- summary_matrix
 tmp_clusters <- clusterDBSCAN(rownames(score16S), cluster_matrix,scoresV)
 writeMessage("Done!", logfile, T)
 

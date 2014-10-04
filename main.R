@@ -19,10 +19,6 @@ libs <- c("Evaluation/data/staggered/SRR072223_V13V31_1.fastq", # V1-3
 #          "Evaluation/data/even/SRR072239_V69V96.fastq") # V6-9
 
 # Reference sequences:
-#ref16S <- "data/LTP/LTP-10271.fasta"
-#refs <- c("data/LTP/LTP-10271_V13.fasta", # V1-3
-#          "data/LTP/LTP-10271_V35.fasta", # V3-5
-#          "data/LTP/LTP-10271_V69.fasta") # V6-9
 ref16S <- "Evaluation/data/16S_gold_hmc.fasta"
 refs <- c("Evaluation/data/16S_gold_hmc_V13V31.fasta", # V1-3
           "Evaluation/data/16S_gold_hmc_V35V53.fasta", # V3-5

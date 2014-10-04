@@ -6,7 +6,7 @@ triangulation <- function(mds16S, mdsV) {
   tri_mesh <- tri.mesh( mdsV[, 1], mdsV[, 2] )
   #plot(tri_mesh)
   #text(mdsV[, 1], mdsV[, 2], rownames(mdsV), cex = 0.6,pos=3)
-  #Here we extract the triangles but from the V-4 regions!!
+  #Here we extract the triangles but from the marker regions!!
   tr <- triangles(tri_mesh)
   tr_indices <- tr[,1:3]
   tr_coords <- matrix(0, nrow = dim(tr)[1], ncol = 6) # V
@@ -33,44 +33,44 @@ triangulation <- function(mds16S, mdsV) {
   centroids2[,2] <- rowSums(tr_coords2[,4:6])/3
   centroids2[,3:8] <- tr_coords2[,1:6]
   
-  ##-----------???????????????? ????????????????????????????------------#
-  #for (i in 1:1) {
-  #  mdsV <- rbind(mdsV,centroids[,1:2])
-  #  mds16S <- rbind(mds16S,centroids2[,1:2])
-  #  ##?????????? ???????????????? ???????????????? ???? ?????????? ???????????? ????????????????????????:
-  #  ans <- add_triangles(centroids, centroids2,mdsV,tr_indices)
-  #  tr_coords <- ans[[1]]
-  #  tr_coords2 <- ans[[2]]
-  #  #tr_indices_new <- ans[[3]]
-  #  tr_indices <- ans[[3]]
-  #  ##list(tr_coords,tr_coords2,tr_indices_new)
-  #
-  #  #Calculate centroids of triangles in order to transmit them later into k-d tree:
-  #  centroids <- matrix(0,nrow=dim(tr_coords)[1],ncol = 8)
-  #  centroids2 <- matrix(0,nrow=dim(tr_coords2)[1],ncol = 8)
-  #  #?????? V
-  #  centroids[,1] <- rowSums(tr_coords[,1:3])/3
-  #  centroids[,2] <- rowSums(tr_coords[,4:6])/3
-  #  centroids[,3:8] <- tr_coords[,1:6]
-  #  #?????? 16S
-  #  centroids2[,1] <- rowSums(tr_coords2[,1:3])/3
-  #  centroids2[,2] <- rowSums(tr_coords2[,4:6])/3
-  #  centroids2[,3:8] <- tr_coords2[,1:6]
-  #}
-  #mdsV <- rbind(mdsV,centroids[,1:2])
-  #mds16S <- rbind(mds16S,centroids2[,1:2])
-  ##
-  #centroids <- matrix(0,nrow=dim(tr_coords)[1],ncol = 8)
-  #centroids2 <- matrix(0,nrow=dim(tr_coords2)[1],ncol = 8)
-  ##V
-  #centroids[,1] <- rowSums(tr_coords[,1:3])/3
-  #centroids[,2] <- rowSums(tr_coords[,4:6])/3
-  #centroids[,3:8] <- tr_coords[,1:6]
-  ###16S
-  #centroids2[,1] <- rowSums(tr_coords2[,1:3])/3
-  #centroids2[,2] <- rowSums(tr_coords2[,4:6])/3
-  #centroids2[,3:8] <- tr_coords2[,1:6]
+  #-----------???????????????? ????????????????????????????------------#
+  for (i in 1:3) {
+    mdsV <- rbind(mdsV,centroids[,1:2])
+    mds16S <- rbind(mds16S,centroids2[,1:2])
+    ##?????????? ???????????????? ???????????????? ???? ?????????? ???????????? ????????????????????????:
+    ans <- add_triangles(centroids, centroids2,mdsV,tr_indices)
+    tr_coords <- ans[[1]]
+    tr_coords2 <- ans[[2]]
+    #tr_indices_new <- ans[[3]]
+    tr_indices <- ans[[3]]
+    ##list(tr_coords,tr_coords2,tr_indices_new)
   
+    #Calculate centroids of triangles in order to transmit them later into k-d tree:
+    centroids <- matrix(0,nrow=dim(tr_coords)[1],ncol = 8)
+    centroids2 <- matrix(0,nrow=dim(tr_coords2)[1],ncol = 8)
+    #?????? V
+    centroids[,1] <- rowSums(tr_coords[,1:3])/3
+    centroids[,2] <- rowSums(tr_coords[,4:6])/3
+    centroids[,3:8] <- tr_coords[,1:6]
+    #?????? 16S
+    centroids2[,1] <- rowSums(tr_coords2[,1:3])/3
+    centroids2[,2] <- rowSums(tr_coords2[,4:6])/3
+    centroids2[,3:8] <- tr_coords2[,1:6]
+  }
+  mdsV <- rbind(mdsV,centroids[,1:2])
+  mds16S <- rbind(mds16S,centroids2[,1:2])
+  #
+  centroids <- matrix(0,nrow=dim(tr_coords)[1],ncol = 8)
+  centroids2 <- matrix(0,nrow=dim(tr_coords2)[1],ncol = 8)
+  #V
+  centroids[,1] <- rowSums(tr_coords[,1:3])/3
+  centroids[,2] <- rowSums(tr_coords[,4:6])/3
+  centroids[,3:8] <- tr_coords[,1:6]
+  ##16S
+  centroids2[,1] <- rowSums(tr_coords2[,1:3])/3
+  centroids2[,2] <- rowSums(tr_coords2[,4:6])/3
+  centroids2[,3:8] <- tr_coords2[,1:6]
+  #------------------------------------
   #Matrix for affine transformation for each triangle:
   transformations <- matrix(0, nrow=dim(tr_coords)[1],ncol = 9)
   mdsV_new <- matrix(0,nrow=dim(mdsV)[1], ncol=dim(mdsV)[2])
@@ -113,8 +113,8 @@ triangulation <- function(mds16S, mdsV) {
     #print(i)
   }
   
-  print(mean(diff))
-  
+  #print(mean(diff))
+  #print(centroids)
   list(transformations, centroids, list(mdsV_new), mean(diff), centroids2)
 }
 
