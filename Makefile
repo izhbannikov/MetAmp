@@ -28,16 +28,12 @@ install :
 	
 	@echo "Unzipping data files..."
 	@rm -rf data/__MACOSX
-	@rm -rf data/LTP
-	unzip data/LTP.zip -d data/
-	@rm -rf Evaluation/data/__MACOSX
-	@rm -rf Evaluation/data/even
-	@rm -rf Evaluation/data/staggered
-	unzip Evaluation/data/even.zip -d Evaluation/data/
-	unzip Evaluation/data/staggered.zip -d Evaluation/data/
+	@rm -rf data/even
+	@rm -rf data/staggered
+	unzip data/even.zip -d data/
+	unzip data/staggered.zip -d data/
 	
 	@echo "Cleaning up..."
-	@rm -rf Evaluation/data/__MACOSX
 	@rm -rf data/__MACOSX
 	@ls > content # Making content of this folder
 	@echo "Installation completed."
@@ -49,12 +45,7 @@ clean :
 	@rm -rf .DS_Store
 	@rm -rf $(package_dir)/blastparser/src/*.o
 	@rm -rf $(package_dir)/blastparser/src/*.so
-	@rm -rf R CMD INSTALL $(package_dir)/cdhitconverter/src/*.o
-	@rm -rf R CMD INSTALL $(package_dir)/cdhitconverter/src/*.so
-	@rm -rf Evaluation/analysis
 	@rm -rf data/__MACOSX
-	@rm -rf data/LTP
-	@rm -rf Evaluation/data/__MACOSX
-	@rm -rf Evaluation/data/even
-	@rm -rf Evaluation/data/staggered
+	@rm -rf data/even
+	@rm -rf data/staggered
 	@echo "Done!"

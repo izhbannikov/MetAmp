@@ -1,0 +1,36 @@
+# Human Mock Community data
+
+## Even
+
+### V13
+
+*SRR072220_V13V31.fastq
+
+### V35
+
+*SRR053818_V35V53.fastq
+*SRR072220_V35V53.fastq
+*SRR072239_V35V53.fastq
+
+### V69
+
+*SRR072239_V69V96.fastq
+
+## Staggered
+
+### V13
+
+*SRR072221_V13V31.fastq
+*SRR072223_V13V31_1.fastq
+
+### V35
+
+*SRR072221_V35V53.fastq
+*SRR072223_V35V53_1.fastq
+*SRR072237_V35V53.fastq
+
+### V69
+
+*SRR072223_V69V96_1.fastq
+*SRR072237_V69V96.fastq
+
