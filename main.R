@@ -2,7 +2,7 @@
 #
 # MetAmp - a software application for meta-amplicon data analysis.
 # Written by Ilya Y. Zhbannikov, Feb 2, 2014
-# Updated on Sept 7, 2014
+# Updated on October 6, 2014
 # Usage: 
 # Set the working directory by changing the "dir_path" variable
 # Under R-environmentL $>source("main.R")
@@ -11,18 +11,18 @@
 dir_path <- "~/Projects/metamp/" # Working directory where all analysis data will be stored
 setwd(dir_path)
 # Provide your data here (can be raw or preprocessed libs, program assumes one file for each region):
-libs <- c("Evaluation/data/staggered/SRR072223_V13V31_1.fastq", # V1-3
-          "Evaluation/data/staggered/SRR072223_V35V53_1.fastq", # V3-5
-          "Evaluation/data/staggered/SRR072223_V69V96_1.fastq") # V6-9
-#libs <- c("Evaluation/data/even/SRR072220_V13V31.fastq", # V1-3
-#          "Evaluation/data/even/SRR072220_V35V53.fastq", # V3-5
-#          "Evaluation/data/even/SRR072239_V69V96.fastq") # V6-9
+libs <- c("data/staggered/SRR072223_V13V31_1.fastq", # V1-3
+          "data/staggered/SRR072223_V35V53_1.fastq", # V3-5
+          "data/staggered/SRR072223_V69V96_1.fastq") # V6-9
+#libs <- c("data/even/SRR072220_V13V31.fastq", # V1-3
+#          "data/even/SRR072220_V35V53.fastq", # V3-5
+#          "data/even/SRR072239_V69V96.fastq") # V6-9
 
 # Reference sequences:
-ref16S <- "Evaluation/data/16S_gold_hmc.fasta"
-refs <- c("Evaluation/data/16S_gold_hmc_V13V31.fasta", # V1-3
-          "Evaluation/data/16S_gold_hmc_V35V53.fasta", # V3-5
-          "Evaluation/data/16S_gold_hmc_V69V96.fasta") # V6-9
+ref16S <- "data/16S_gold_hmc.fasta"
+refs <- c("data/16S_gold_hmc_V13V31.fasta", # V1-3
+          "data/16S_gold_hmc_V35V53.fasta", # V3-5
+          "data/16S_gold_hmc_V69V96.fasta") # V6-9
 
 source("config.R") # Link the configuration file with default program parameters and path to the data
 source("metamp.R") # Link the analysis pipeline
