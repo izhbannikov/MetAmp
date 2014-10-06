@@ -1,18 +1,7 @@
 #-----------------Analysis direcotory-----------------------------------------------------#
 analysis_dir <- "analysis"
 #-----------------Third-party applications to use----------------------#
-denoise_data <- T # If you use raw libs, we strongly recommend set it to 'T' !
-denoise_app <- "bin/./seqyclean" # Denoising.
-merge_app <- "bin/./flash" # Merging overlapping reads.
 #-----------------Clustering-------------------------------------------#
-# Path to clustering application. Clustering reads to have consensus sequences.
-if (Sys.info()['sysname'] == "Darwin") { # OS-X
-  cluster_app <- "bin/./cd-hit"
-}
-if (Sys.info()['sysname'] == "Linux") { # Linux
-  cluster_app <- "bin/./cd-hit_lin"
-}
-cit <- 0.90 # Cluster identity threshold
 use_variable_trhreshold <- F
 cit_step <- 0.01
 min_cit <- 0.5
@@ -34,3 +23,4 @@ final_clust_filename <- "clusters.clstr"
 # Output file with coordinates:
 coord_filename <- "coordinates.crd"
 max_threads <- 16
+chime_ref <- "data/gold/gold.fa"
