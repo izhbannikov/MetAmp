@@ -3,12 +3,11 @@
 #
 # Computes a distance matrix for 16S gene sequences:
 generate_distance_matrix16S <- function(filename) {
-  usearch_out <- paste(analysis_dir, '/', basename(filename),"_out.mx",sep='')
+  usearch_out <- paste(tmp_dir, '/', basename(filename),"_out.mx",sep='')
   
-  num_threads <- detectCores()
-  if (num_threads > max_threads)
-    num_threads <- max_threads
-  
+  #num_threads <- detectCores()
+  #if (num_threads > max_threads)
+  #  num_threads <- max_threads
   #system(paste(usearch, "-distmx_brute -calc_distmx", filename, "-distmxout", usearch_out, "-format square"))
   #system(paste(usearch, "-calc_distmx", filename, "-distmxout", usearch_out, "-format square -threads", num_threads))
   #reads <- read.fasta(filename)
@@ -27,14 +26,11 @@ generate_distance_matrix <- function(fnameREF16S, fnameREF="", fnameEMP="") {
   # fnameEMP - empirical reads of microbial community of interest
   
   # Merging reference and empirical (consensus) sequences together:
-  ref_emp <- paste(analysis_dir, '/', basename(fnameREF), "_", basename(fnameEMP), sep='' )
+  ref_emp <- paste(tmp_dir, '/', basename(fnameREF), "_", basename(fnameEMP), sep='' )
   system(paste("cat", fnameREF, fnameEMP, '>', ref_emp))
   # Computing distance matrices for both reference and empirical (clustered) sequences:
-  dmx_out <- paste(analysis_dir, '/', basename(ref_emp), ".dmx",sep='')
+  dmx_out <- paste(tmp_dir, '/', basename(ref_emp), ".dmx",sep='')
   
-  num_threads <- detectCores()
-  if (num_threads > max_threads)
-    num_threads <- max_threads
   #-distmx_brute 
   #system(paste(usearch, "-distmx_brute -calc_distmx", ref_emp, "-distmxout", dmx_out, "-format square"))
   #system(paste(usearch, "-calc_distmx", ref_emp, "-distmxout", dmx_out, "-format square -threads", num_threads))

@@ -2,7 +2,6 @@ Makefile
 Packages
 README.md
 UserGuide.pdf
-analysis
 bin
 config.R
 content

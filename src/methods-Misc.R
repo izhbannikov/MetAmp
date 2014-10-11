@@ -195,8 +195,8 @@ write_clust_data <- function(filename) {
 make_otu_table <- function(clstr_infilename, clstr_outfilename, otu_table_filename, num_markers) {
   #python stat.py clusters.clstr final_clusters.clstr final_otu_table.txt
   for (i in 1:num_markers) {
-    maptable <- paste(analysis_dir, "/", "map_", i, ".uc", sep='')
-    otutable <- paste(analysis_dir, "/", "otu_table_", i, ".txt", sep='')
+    maptable <- paste(tmp_dir, "/", "map_", i, ".uc", sep='')
+    otutable <- paste(tmp_dir, "/", "otu_table_", i, ".txt", sep='')
     system(paste("python python_scripts/uc2otutab.py", maptable, ">", otutable))
   }
   # Making final otu table:

@@ -10,9 +10,11 @@
 dir_path <- "~/Projects/metamp/" # Working directory where all analysis data will be stored
 setwd(dir_path)
 # Provide your data here (can be raw or preprocessed libs, program assumes one file for each region):
+# Staggered community:
 #libs <- c("data/staggered/SRR072223_V13V31_1_relabeled.fastq", # V1-3
 #          "data/staggered/SRR072223_V35V53_1_relabeled.fastq", # V3-5
 #          "data/staggered/SRR072223_V69V96_1_relabeled.fastq") # V6-9
+# Even community:
 libs <- c("data/even/SRR072220_V13V31_relabeled.fastq", # V1-3
           "data/even/SRR072220_V35V53_relabeled.fastq", # V3-5
           "data/even/SRR072239_V69V96_relabeled.fastq") # V6-9
