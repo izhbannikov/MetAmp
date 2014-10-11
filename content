@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 total 2224
 -rwxr-xr-x@  1 ilya  staff   1.3K Oct  6 05:38 Makefile
 drwxr-xr-x   5 ilya  staff   170B Oct  6 00:49 Packages
@@ -11,3 +12,18 @@ drwxr-xr-x  13 ilya  staff   442B Oct  6 05:40 data
 -rwxr-xr-x   1 ilya  staff   3.7K Oct  6 00:49 metamp.R
 drwxr-xr-x  15 ilya  staff   510B Oct  6 02:11 python_scripts
 drwxr-xr-x  15 ilya  staff   510B Oct  6 00:49 src
+=======
+Makefile
+Packages
+README.md
+UserGuide.pdf
+analysis
+bin
+config.R
+content
+data
+main.R
+metamp.R
+python_scripts
+src
+>>>>>>> dev
