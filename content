@@ -1,23 +1,7 @@
-<<<<<<< HEAD
-total 2224
--rwxr-xr-x@  1 ilya  staff   1.3K Oct  6 05:38 Makefile
-drwxr-xr-x   5 ilya  staff   170B Oct  6 00:49 Packages
--rwxr-xr-x@  1 ilya  staff   3.8K Oct  6 05:56 README.md
--rw-r--r--@  1 ilya  staff   1.1M Oct  6 04:13 UserGuide.pdf
-drwxr-xr-x   8 ilya  staff   272B Oct  6 00:49 bin
--rwxr-xr-x   1 ilya  staff   1.2K Oct  6 00:59 config.R
--rwxr-xr-x   1 ilya  staff     0B Oct  6 05:58 content
-drwxr-xr-x  13 ilya  staff   442B Oct  6 05:40 data
--rwxr-xr-x   1 ilya  staff   1.2K Oct  6 05:36 main.R
--rwxr-xr-x   1 ilya  staff   3.7K Oct  6 00:49 metamp.R
-drwxr-xr-x  15 ilya  staff   510B Oct  6 02:11 python_scripts
-drwxr-xr-x  15 ilya  staff   510B Oct  6 00:49 src
-=======
 Makefile
 Packages
 README.md
 UserGuide.pdf
-analysis
 bin
 config.R
 content
@@ -26,4 +10,3 @@ main.R
 metamp.R
 python_scripts
 src
->>>>>>> dev

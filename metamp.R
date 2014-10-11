@@ -1,8 +1,4 @@
 # -*- coding: utf-8 -*-
-#
-#MetAmp - a software application for meta-amplicon data analysis.
-#Written by Ilya Y. Zhbannikov, Feb 2, 2014.
-#
 # Setting the work directory:
 #==============Source files
 source("src/methods-Denoising.R")
@@ -25,9 +21,11 @@ library(stringr)
 library(foreach) # For parallel clustering
 library(ShortRead) # For manipulations with sequences
 library(MASS)
-#----Create "analysis" directory------#
+#----Create "analysis" and "tmp" directories------#
 analysis_path <- paste(dir_path, analysis_dir,sep='')
 system(paste("mkdir", analysis_path))
+system(paste("mkdir", tmp_dir))
+
 # All information is recorded in log.txt:
 logfile <- paste(analysis_path, '/', "log.txt", sep='')
 
@@ -43,7 +41,7 @@ for (i in seq(libs)) {
   work_libs[i,2] <- libs[i]
 }
 for(i in 1:dim(work_libs)[1]) {
-  work_libs[i,1] <- cluster2(analysis_dir, default_pref, work_libs[i,1], num=i)
+  work_libs[i,1] <- cluster2(analysis_dir=tmp_dir, lib=work_libs[i,1], num=i)
 }
 
 #==============Builging distance matrices==================#
@@ -86,14 +84,17 @@ OTUS <- assignClusters(tmp_clusters, work_libs)
 writeMessage("Done!", logfile, T)
 
 writeMessage("Writing output data...", logfile, T)
-write_clust_data(paste(dir_path, analysis_dir, '/', final_clust_filename, sep=''))
+write_clust_data(paste(dir_path, tmp_dir, '/tmp_clusters.clstr', sep=''))
 write_coordinates(paste(dir_path, analysis_dir, '/', coord_filename, sep=''))
-make_otu_table(clstr_infilename=paste(dir_path, analysis_dir, '/', final_clust_filename, sep=''), 
-               clstr_outfilename=paste(dir_path, analysis_dir, '/', "final_clusters.clstr", sep=''), 
-               otu_table_filename=paste(dir_path, analysis_dir, '/', "final_otu_table.txt", sep=''), 
+make_otu_table(clstr_infilename=paste(dir_path, tmp_dir, '/tmp_clusters.clstr', sep=''), 
+               clstr_outfilename=paste(dir_path, analysis_dir, '/', clust_filename, sep=''), 
+               otu_table_filename=paste(dir_path, analysis_dir, '/', otu_table_filename, sep=''), 
                num_markers=length(refs))
   
-  
+if (keep_tmp_files) {
+  writeMessage("Cleaning up temporary files...", logfile, T)
+  system(paste("rm -r", tmp_dir))
+}  
 
 #=============End of analysis===============#
 writeMessage("End of analysis", logfile, T)
