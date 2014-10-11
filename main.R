@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-#MetAmp - a software application for meta-amplicon data analysis.
+# MetAmp - a software application for meta-amplicon data analysis.
 # Written by Ilya Y. Zhbannikov, Feb 2, 2014
-# Updated on October 9, 2014
+# Updated on October 11, 2014
 # Usage: 
 # Set the working directory by changing the "dir_path" variable
-# Under R-environmentL $>source("main.R")
+# Under R-environment: source("main.R")
 #
 # Set the work directory:
 dir_path <- "~/Projects/metamp/" # Working directory where all analysis data will be stored
