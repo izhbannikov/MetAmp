@@ -52,9 +52,19 @@ To run the program on test data open main.R and set the work directory and run t
 
 # How to run the program on your data
 
-Before analysis, you may need to perform data denoising and (if you use Illumina sequence data), merge overlapping reads.
+Before analysis, you may need to perform re-labeling of your read headers: a read header should contain ```barcodelabel``` (see more at www.drive5.com),
+for example: 
 
-Later I will provide the scripts that do it.
+~~~Python
+@read1;barcodelabel=TCAG;
+GATGAACGCTGGCGGCGTGCCTAATACATGCAAGT...AT
++
+IIIAAAIIIIIIIIIIIIIIIHHHIAAAAAAAAAA...II
+~~~
+
+If you use Illumina sequence data, you also have to merge overlapping paired-end reads.
+
+Later I will provide the scripts that can do these things above, but for now you can simply use scripts provided at www.drive5.com.
 
 ## 1. Edit script ```main.R```, specifically:
 
@@ -68,9 +78,9 @@ Working directory where all analysis data will be stored
 Provide your sequences (in ```main.R``` file), for example:
 
 ~~~R
-libs <- c("data/staggered/SRR072223_V13V31_1.fastq", # V1-3
-          "data/staggered/SRR072223_V35V53_1.fastq", # V3-5
-          "data/staggered/SRR072223_V69V96_1.fastq") # V6-9
+libs <- c("data/staggered/SRR072223_V13V31_1_relabeled.fastq", # V1-3
+          "data/staggered/SRR072223_V35V53_1_relabeled.fastq", # V3-5
+          "data/staggered/SRR072223_V69V96_1_relabeled.fastq") # V6-9
 ~~~
 
 and reference sequences:
@@ -98,3 +108,10 @@ dir_path <- "~/Projects/metamp/"
 ~~~R
 source("main.R")
 ~~~
+
+## 4. Output files
+
+* clusters.clstr - contains large table in ```uc``` format (see www.drive5.com)
+* otu_table.txt - OTU table, where rows are OTUs and colums are barcodes.
+* coordinates.crd - file that contains NMDS coordinates of each point (reference and empirical, see provided explanations in UserGuide.pdf)
+* log.txt - a simple log file that record every stage of analysis.
