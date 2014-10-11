@@ -88,6 +88,12 @@ writeMessage("Done!", logfile, T)
 writeMessage("Writing output data...", logfile, T)
 write_clust_data(paste(dir_path, analysis_dir, '/', final_clust_filename, sep=''))
 write_coordinates(paste(dir_path, analysis_dir, '/', coord_filename, sep=''))
+make_otu_table(clstr_infilename=paste(dir_path, analysis_dir, '/', final_clust_filename, sep=''), 
+               clstr_outfilename=paste(dir_path, analysis_dir, '/', "final_clusters.clstr", sep=''), 
+               otu_table_filename=paste(dir_path, analysis_dir, '/', "final_otu_table.txt", sep=''), 
+               num_markers=length(refs))
+  
+  
 
 #=============End of analysis===============#
 writeMessage("End of analysis", logfile, T)

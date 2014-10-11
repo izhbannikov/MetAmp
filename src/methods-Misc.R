@@ -192,6 +192,17 @@ write_clust_data <- function(filename) {
   }
 }
 
+make_otu_table <- function(clstr_infilename, clstr_outfilename, otu_table_filename, num_markers) {
+  #python stat.py clusters.clstr final_clusters.clstr final_otu_table.txt
+  for (i in 1:num_markers) {
+    maptable <- paste(analysis_dir, "/", "map_", i, ".uc", sep='')
+    otutable <- paste(analysis_dir, "/", "otu_table_", i, ".txt", sep='')
+    system(paste("python python_scripts/uc2otutab.py", maptable, ">", otutable))
+  }
+  # Making final otu table:
+  system(paste("python python_scripts/stat.py", clstr_infilename, clstr_outfilename, otu_table_filename, num_markers))
+}
+
 writeMessage <- function(message, logfile, isAppend) {
   message <- paste(Sys.time(), message)
   print(message)
@@ -199,6 +210,15 @@ writeMessage <- function(message, logfile, isAppend) {
 }
 
 write_coordinates <- function(filename) {
-  colnames(summary_matrix) <- c("x", "y")
-  write.table(summary_matrix, file=filename)
+  colnames(summary_matrix) <- c('x', 'y')
+  write.table(summary_matrix, file=filename, quote = F)
+  for (i in 1:length(merged_table)) {
+    for (j in 1:dim(merged_table[[i]])[1]) {
+      coords <- c(summary_matrix[merged_table[[i]][j,1],] + runif(1, min = 0, max = 0.001))
+      string_to_write <- paste(toString(merged_table[[i]][j,2]), coords[1], coords[2])
+      print(string_to_write)
+      write(x=string_to_write,file=filename,append=T)
+    }
+  }
+  
 }
