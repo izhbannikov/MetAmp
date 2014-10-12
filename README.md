@@ -73,16 +73,9 @@ dir_path <- "~/Projects/metamp/"
 analysis_dir <- "analysis"
 ~~~
 
-## 2. Edit script ```main.R```, specifically:
+## 2. Provide your sequences (in ```main.R``` file), for example:
 
-Set the work directory ```dir_path```, for example:
-
-~~~R
-dir_path <- "~/Projects/metamp/"
-~~~
-Working directory where all analysis data will be stored
-
-Provide your sequences (in ```main.R``` file), for example:
+Amplicon data:
 
 ~~~R
 libs <- c("data/staggered/SRR072223_V13V31_1_relabeled.fastq", # V1-3
