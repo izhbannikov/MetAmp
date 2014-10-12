@@ -11,16 +11,16 @@ source("src/methods-Affine.R")
 source("src/methods-Misc.R")
 source("src/methods-Triangulation.R")
 # Libraries with functions used in MetAmp
-library(seqinr) # For manupulations with sequences
-library(BLASTParser,lib.loc="R_lib") # Parses USEARCH output file
-library(tripack) # For triangulation
-library(RANN) # For kd-tree
-library(fpc) # For clustering using the DBSCAN algorithm
-library(amap)
-library(stringr)
-library(foreach) # For parallel clustering
-library(ShortRead) # For manipulations with sequences
-library(MASS)
+library(seqinr,lib.loc=R_LIBS) # For manupulations with sequences
+library(BLASTParser,lib.loc=R_LIBS) # Parses USEARCH output file
+library(tripack,lib.loc=R_LIBS) # For triangulation
+library(RANN,lib.loc=R_LIBS) # For kd-tree
+library(fpc,lib.loc=R_LIBS) # For clustering using the DBSCAN algorithm
+library(amap,lib.loc=R_LIBS)
+library(stringr,lib.loc=R_LIBS)
+library(foreach,lib.loc=R_LIBS) # For parallel clustering
+library(ShortRead,lib.loc=R_LIBS) # For manipulations with sequences
+library(MASS,lib.loc=R_LIBS)
 #----Create "analysis" and "tmp" directories------#
 analysis_path <- paste(dir_path, analysis_dir,sep='')
 system(paste("mkdir", analysis_path))

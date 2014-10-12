@@ -16,6 +16,7 @@ check :
 	@echo "Done!"
 	
 install :
+	export R_LIBS=$(rlibs_dir)
 	mkdir -p $(rlibs_dir)
 	
 	@echo "Installing required R packages..."
