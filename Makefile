@@ -1,5 +1,6 @@
 #
 package_dir="Packages"
+rlibs_dir="R_libs"
 #
 all : check install
 
@@ -15,6 +16,7 @@ check :
 	@echo "Done!"
 	
 install :
+	mkdir $(rlibs_dir)
 	
 	@echo "Installing required R packages..."
 	@$(package_dir)/./install.R
@@ -40,6 +42,7 @@ install :
 
 clean :
 	@echo "Cleaning up..."
+	@rm -rf $(rlibs_dir)
 	@rm -rf analysis
 	@rm -rf .Rhistory
 	@rm -rf .DS_Store

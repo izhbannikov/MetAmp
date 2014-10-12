@@ -10,6 +10,12 @@ if (Sys.info()['sysname'] == "Linux") { # Linux
   usearch <- "bin/./usearch8.0.1403_i86linux32"
 }
 usearch7 <- "bin/./usearch7.0.1090_i86osx32"
+if (Sys.info()['sysname'] == "Darwin") { # OS-X
+  usearch7 <- "bin/./usearch7.0.1090_i86osx32"
+}
+if (Sys.info()['sysname'] == "Linux") { # Linux
+  usearch7 <- "bin/./usearch7.0.1090_i86linux32"
+}
 #--------------Miscellaneous------------------------------------------#
 # Output file with final clusters:
 clust_filename <- "clusters.clstr"
