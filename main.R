@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 # MetAmp - a software application for meta-amplicon data analysis.
 # Written by Ilya Y. Zhbannikov, Feb 2, 2014
-# Updated on October 11, 2014
+# Updated on October 12, 2014
 # Usage: 
 # Set the working directory by changing the "dir_path" variable
 # Under R-environment: source("main.R")
 #
 # Set the work directory:
-dir_path <- "~/Projects/metamp/" # Working directory where all analysis data will be stored
-setwd(dir_path)
+dir_path <- "~/Projects/metamp/" # Path to the program directory
+analysis_dir <- "analysis" # Directory that keeps all analysis data and results
+
+
+setwd(dir_path) # Do not edit this line
+
 # Provide your data here (can be raw or preprocessed libs, program assumes one file for each region):
 # Staggered community:
 #libs <- c("data/staggered/SRR072223_V13V31_1_relabeled.fastq", # V1-3
@@ -25,5 +29,6 @@ refs <- c("data/16S_gold_hmc_V13V31.fasta", # V1-3
           "data/16S_gold_hmc_V35V53.fasta", # V3-5
           "data/16S_gold_hmc_V69V96.fasta") # V6-9
 
+# Do not edit:
 source("config.R") # Link the configuration file with default program parameters and path to the data
 source("metamp.R") # Link the analysis pipeline

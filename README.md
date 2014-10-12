@@ -66,7 +66,14 @@ If you use Illumina sequence data, you also have to merge overlapping paired-end
 
 Later I will provide the scripts that can do these things above, but for now you can simply use scripts provided at www.drive5.com.
 
-## 1. Edit script ```main.R```, specifically:
+## 1. Set the program and analysis directories in ```main.R```, for example:
+
+~~~R
+dir_path <- "~/Projects/metamp/"
+analysis_dir <- "analysis"
+~~~
+
+## 2. Edit script ```main.R```, specifically:
 
 Set the work directory ```dir_path```, for example:
 
@@ -95,13 +102,6 @@ refs <- c("data/16S_gold_hmc_V13V31.fasta", # V1-3
 
 Warning! Reference sequences and your data must be concordant, i.e., for example, in ```libs``` array library ```SRR072223_V13V31_1.fastq``` 
 must be in the same position that ```16S_gold_hmc_V13V31.fasta``` in ```refs``` array.
-
-## 2. Set the program directory in ```main.R```, for example:
-
-~~~R
-dir_path <- "~/Projects/metamp/"
-~~~
-
 
 ## 3. Run the script ```main.R```:
 
