@@ -1,5 +1,21 @@
 # -*- coding: utf-8 -*-
-# Setting the work directory:
+# Installing required libraries:
+print("Checking for required packages...")
+default_repo = "http://cran.us.r-project.org"
+if("seqinr" %in% rownames(installed.packages()) == FALSE) {install.packages("seqinr", repos=default_repo)}
+if("tripack" %in% rownames(installed.packages()) == FALSE) {install.packages("tripack", repos=default_repo)}
+if("RANN" %in% rownames(installed.packages()) == FALSE) {install.packages("RANN", repos=default_repo)}
+if("fpc" %in% rownames(installed.packages()) == FALSE) {install.packages("fpc", repos=default_repo)}
+if("amap" %in% rownames(installed.packages()) == FALSE) {install.packages("amap", repos=default_repo)}
+if("foreach" %in% rownames(installed.packages()) == FALSE) {install.packages("foreach", repos=default_repo)}
+if("ShortRead" %in% rownames(installed.packages()) == FALSE) {
+  source("http://bioconductor.org/biocLite.R")
+  biocLite("ShortRead")
+}
+if("Rcpp" %in% rownames(installed.packages()) == FALSE) {install.packages("Rcpp", repos=default_repo)}
+if("stringr" %in% rownames(installed.packages()) == FALSE) {install.packages("stringr", repos=default_repo)}
+if("MASS" %in% rownames(installed.packages()) == FALSE) {install.packages("MASS", repos=default_repo)}
+
 #==============Source files
 source("src/methods-Denoising.R")
 source("src/methods-Merge.R")
@@ -11,16 +27,28 @@ source("src/methods-Affine.R")
 source("src/methods-Misc.R")
 source("src/methods-Triangulation.R")
 # Libraries with functions used in MetAmp
-library(seqinr,lib.loc=R_LIBS) # For manupulations with sequences
+#library(seqinr,lib.loc=R_LIBS) # For manupulations with sequences
+#library(BLASTParser,lib.loc=R_LIBS) # Parses USEARCH output file
+#library(tripack,lib.loc=R_LIBS) # For triangulation
+#library(RANN,lib.loc=R_LIBS) # For kd-tree
+#library(fpc,lib.loc=R_LIBS) # For clustering using the DBSCAN algorithm
+#library(amap,lib.loc=R_LIBS)
+#library(stringr,lib.loc=R_LIBS)
+#library(foreach,lib.loc=R_LIBS) # For parallel clustering
+#library(ShortRead,lib.loc=R_LIBS) # For manipulations with sequences
+#library(MASS,lib.loc=R_LIBS)
+
+library(seqinr) # For manupulations with sequences
 library(BLASTParser,lib.loc=R_LIBS) # Parses USEARCH output file
-library(tripack,lib.loc=R_LIBS) # For triangulation
-library(RANN,lib.loc=R_LIBS) # For kd-tree
-library(fpc,lib.loc=R_LIBS) # For clustering using the DBSCAN algorithm
-library(amap,lib.loc=R_LIBS)
-library(stringr,lib.loc=R_LIBS)
-library(foreach,lib.loc=R_LIBS) # For parallel clustering
-library(ShortRead,lib.loc=R_LIBS) # For manipulations with sequences
-library(MASS,lib.loc=R_LIBS)
+library(tripack) # For triangulation
+library(RANN) # For kd-tree
+library(fpc) # For clustering using the DBSCAN algorithm
+library(amap)
+library(stringr)
+library(foreach) # For parallel clustering
+library(ShortRead) # For manipulations with sequences
+library(MASS)
+
 #----Create "analysis" and "tmp" directories------#
 analysis_path <- paste(dir_path, analysis_dir,sep='')
 system(paste("mkdir", analysis_path))

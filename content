@@ -1,7 +1,7 @@
 Makefile
 Packages
 README.md
-R_libs
+R_Lib
 UserGuide.pdf
 bin
 config.R
