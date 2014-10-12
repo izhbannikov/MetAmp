@@ -12,7 +12,7 @@ source("src/methods-Misc.R")
 source("src/methods-Triangulation.R")
 # Libraries with functions used in MetAmp
 library(seqinr) # For manupulations with sequences
-library(BLASTParser,lib.loc="R_libs") # Parses USEARCH output file
+library(BLASTParser,lib.loc="R_lib") # Parses USEARCH output file
 library(tripack) # For triangulation
 library(RANN) # For kd-tree
 library(fpc) # For clustering using the DBSCAN algorithm
