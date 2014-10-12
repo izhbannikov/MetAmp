@@ -1,6 +1,6 @@
 #
 package_dir="Packages"
-rlibs_dir="~/R"
+rlibs_dir="R_lib"
 #
 all : check install
 
