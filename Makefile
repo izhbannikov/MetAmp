@@ -1,6 +1,6 @@
 #
 package_dir="Packages"
-rlibs_dir="R_libs"
+rlibs_dir="~/R"
 #
 all : check install
 
@@ -16,7 +16,7 @@ check :
 	@echo "Done!"
 	
 install :
-	mkdir $(rlibs_dir)
+	mkdir -p $(rlibs_dir)
 	
 	@echo "Installing required R packages..."
 	@$(package_dir)/./install.R
