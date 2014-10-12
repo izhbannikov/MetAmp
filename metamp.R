@@ -119,7 +119,7 @@ make_otu_table(clstr_infilename=paste(dir_path, tmp_dir, '/tmp_clusters.clstr', 
                otu_table_filename=paste(dir_path, analysis_dir, '/', otu_table_filename, sep=''), 
                num_markers=length(refs))
   
-if (keep_tmp_files) {
+if (keep_tmp_files==F) {
   writeMessage("Cleaning up temporary files...", logfile, T)
   system(paste("rm -r", tmp_dir))
 }  
