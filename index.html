@@ -1,62 +1,85 @@
+
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Meta-Amplicon Analysis Project : ">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
+    <meta charset="utf-8">
     <title>Meta-Amplicon Analysis Project</title>
+    
+    <meta name="author" content="Stephanie Hicks">
+
+    <!-- Enable responsive viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="css/kbroman.css" rel="stylesheet" type="text/css" media="all">
+         
   </head>
-
+  
   <body>
+  	
+  	<div id="uilogo" class="container clearfix">
+	<a href="http://uidaho.edu" target="_blank"><img src="media/uidaho.png" alt="University of Idaho"></a>
+	</div>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/izhbannikov/MetAmp">View on GitHub</a>
-
-          <h1 id="project_title">Meta-Amplicon Analysis Project</h1>
-          <h2 id="project_tagline"></h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/izhbannikov/MetAmp/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/izhbannikov/MetAmp/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
+  
+  	<div class="navbar">
+      <div class="navbar-inner">
+        <div class="container-narrow">
+          <a class="brand" href="http://izhbannikov.github.io/MetAmp">Meta-Amplicon Analysis Project</a>
+          <a href="http://www.ibest.uiaho.edu"><img src="media/ibest_logo.jpg" width="10%" height="10%" alt="Site logo" pagespeed_url_hash="2699053971" align = "right"></a>
+          <ul class="nav">
+              <li><a href="http://izhbannikov.github.io/MetAmp/index.html">Home</a></li>
+              <li><a href="https://github.com/izhbannikov/MetAmp/zipball/master" id="download-zip" class="button">Download</a></li>
+              <li><a href="pages/documentation.html">Documentation</a></li>
+              <li><a href="pages/resources.html">Resources</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
+    
+    <div class="container-narrow">
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-our-meta-amplicon-analysis-project-page" class="anchor" href="#welcome-to-our-meta-amplicon-analysis-project-page"><span class="octicon octicon-link"></span></a>Welcome to our Meta-Amplicon Analysis Project page</h3>
+      <div class="content">
+        
+<div class="row-fluid">
+  <div class="span12">
+    <p><img src="media/16S.png" alt="16S rRNA" width="50%" height="50%" /></p>
 
-<p>We present a novel method of marker analysis of microbial data: clustering analysis of microbial communities using multiple genomic markers. This is the calibration of markers using data from known microbial genomes.</p>
+<p>We present a novel method of marker analysis of microbial data: clustering analysis of microbial communities using multiple genomic markers. This is the calibration of markers using data from known microbial genomes. </p>
 
-<h3>
-<a name="why-one-should-use-our-method" class="anchor" href="#why-one-should-use-our-method"><span class="octicon octicon-link"></span></a>Why one should use our method?</h3>
+<h4 id="important-links">Important Links</h4>
 
-<p>High-throughput sequencing technologies allow researchers to characterize microbial community composition and structure without cultivation. There are two current approaches in analysis of microbial communities: metagenomic and genomic marker sequencing. Metagenomic analysis employs shotgun sequencing following by optional assembly. Marker sequencing clusters amplicon sequences by similarity into operational taxonomic units (OTU). The limitation of OTU method: (1) sensitive to sequence noise; (2) Different clusters for different markers; (3) Combining data from different markers is not easy.</p>
+<ul>
+  <li>
+    <p>Links to the GitHub repository: <a href="https://github.com/izhbannikov/MetAmp/">MetAmp analysis tool</a> </p>
+  </li>
+</ul>
 
-<h3>
-<a name="software-application" class="anchor" href="#software-application"><span class="octicon octicon-link"></span></a>Software application</h3>
 
-<p>We developed a software application MetAmp that performs the meta-amplicon analysis. The MetAmp is a set of scripts and packages and ready to use after the installation. The general requirements are: Python 2.7, Biopython, R and GCC. The input data and other parameters should be provided in configuration file config.R. To run the program, simply execute the file ’main.R’ from R-environment: source(”main.R”). Most MetAmp parameters can be left to default for majority of tasks.</p>
-      </section>
-    </div>
+  </div>
+</div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Meta-Amplicon Analysis Project maintained by <a href="https://github.com/izhbannikov">izhbannikov</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+
+      </div>
+      <hr>
+      <footer>
+        <p><small>
+  <!-- start of MetaAmp Project's footer; modify this part -->
+              <a href="http://www.uidaho.edu"> &copy; 2014 University of Idaho</a>
+  <!-- end of MetaAmp Project's footers footer; modify this part -->
+        </small></p>
       </footer>
+
     </div>
 
     
-
   </body>
 </html>
+
