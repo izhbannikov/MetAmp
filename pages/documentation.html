@@ -61,10 +61,10 @@
 	<p>
 	Before analysis, you may need to perform re-labeling of your read headers: a read header should contain barcodelabel (see more at www.drive5.com), for example:
 
-<p><blockquote>@read1;barcodelabel=TCAG;<br>
-GATGAACGCTGGCGGCGTGCCTAATACATGCAAGT...AT<br>
-+<br>
-IIIAAAIIIIIIIIIIIIIIIHHHIAAAAAAAAAA...II</p></blockquote>
+<blockquote><pre>@read1;barcodelabel=TCAG;
+GATGAACGCTGGCGGCGTGCCTAATACATGCAAGT...AT
++
+IIIAAAIIIIIIIIIIIIIIIHHHIAAAAAAAAAA...II</pre></blockquote>
 
 If you use Illumina sequence data, you also have to merge overlapping paired-end reads.
 
@@ -77,23 +77,27 @@ Later I will provide the scripts that can do these things above, but for now you
 		<li>
 			<p>Set the program and analysis directories in main.R:</p>
 		
-			<blockquote>dir_path <- "~/Projects/metamp/"<br>analysis_dir <- "analysis"</blockquote>
+			<blockquote><pre>
+dir_path <- "~/Projects/metamp/"
+analysis_dir <- "analysis"</pre></blockquote>
 		</li>
 		<li>
 			<p>Provide your sequences (in main.R file)</p>
 			<p>Amplicon data:</p>
-			<blockquote>libs <- c("data/staggered/SRR072223_V13V31_1_relabeled.fastq", # V1-3<br>
-          						"data/staggered/SRR072223_V35V53_1_relabeled.fastq", # V3-5<br>
-					          "data/staggered/SRR072223_V69V96_1_relabeled.fastq") # V6-9</blockquote>
+			<blockquote><pre>
+libs <- c("data/staggered/SRR072223_V13V31_1_relabeled.fastq",
+	 "data/staggered/SRR072223_V35V53_1_relabeled.fastq",
+	 "data/staggered/SRR072223_V69V96_1_relabeled.fastq")</pre></blockquote>
 			<p>and reference sequences:</p>
-			<blockquote>ref16S <- "data/16S_gold_hmc.fasta"<br>
-refs <- c("data/16S_gold_hmc_V13V31.fasta", # V1-3<br>
-          "data/16S_gold_hmc_V35V53.fasta", # V3-5<br>
-          "data/16S_gold_hmc_V69V96.fasta") # V6-9</blockquote>
+			<blockquote><pre>
+ref16S <- "data/16S_gold_hmc.fasta"
+refs <- c("data/16S_gold_hmc_V13V31.fasta", # V1-3
+          "data/16S_gold_hmc_V35V53.fasta", # V3-5
+          "data/16S_gold_hmc_V69V96.fasta") # V6-9</pre></blockquote>
 		</li>
 		<li>
 			<p>Run the script main.R</p>
-			<blockquote>source("main.R")</blockquote>	
+			<blockquote><pre>source("main.R")</pre></blockquote>	
 		</li>
 		<li>
 			<p>Output files will be in analysis directory:</p>
