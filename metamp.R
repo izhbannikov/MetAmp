@@ -114,10 +114,19 @@ writeMessage("Done!", logfile, T)
 writeMessage("Writing output data...", logfile, T)
 write_clust_data(paste(dir_path, tmp_dir, '/tmp_clusters.clstr', sep=''))
 write_coordinates(paste(dir_path, analysis_dir, '/', coord_filename, sep=''))
-make_otu_table(clstr_infilename=paste(dir_path, tmp_dir, '/tmp_clusters.clstr', sep=''), 
-               clstr_outfilename=paste(dir_path, analysis_dir, '/', clust_filename, sep=''), 
-               otu_table_filename=paste(dir_path, analysis_dir, '/', otu_table_filename, sep=''), 
-               num_markers=length(refs))
+
+test_id <- toString(readFastq(work_libs[1,2])[1]@id)
+if (length(grep("barcodelabel",test_id, fixed=T))!=0) {
+  make_otu_table(clstr_infilename=paste(dir_path, tmp_dir, '/tmp_clusters.clstr', sep=''), 
+                 clstr_outfilename=paste(dir_path, analysis_dir, '/', clust_filename, sep=''), 
+                 otu_table_filename=paste(dir_path, analysis_dir, '/', otu_table_filename, sep=''), 
+                 num_markers=length(refs))
+  
+} else {
+  print("Can't make an OTU table - read id should contain barcodelabel.")
+  writeMessage("Can't make an OTU table - read id should contain barcodelabel.", logfile, T)
+}
+
   
 if (keep_tmp_files==F) {
   writeMessage("Cleaning up temporary files...", logfile, T)
