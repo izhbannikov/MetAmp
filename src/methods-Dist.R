@@ -47,11 +47,12 @@ generate_distance_matrix <- function(fnameREF16S, fnameREF="", fnameEMP="") {
   del = c()
   m_table <- c()
   for (i in 1:sz) {
-    for (j in 1:sz) {
-      if ((d1[i,j]<0.03) && (i > dim(score16S)[1]) && (i != j)) {
+    for (j in 1:dim(score16S)[1]) {
+      if ((d1[i,j]<0.05) && (i > dim(score16S)[1]) && (i != j)) {
         #print(c(i,j))
         del = c(del,i)
-        m_table = c(m_table, colnames(identity_matrix)[j], rownames(identity_matrix)[i])
+        if ((rownames(identity_matrix)[i] %in% m_table) == F)
+          m_table = c(m_table, colnames(identity_matrix)[j], rownames(identity_matrix)[i])
       }
     }
   }

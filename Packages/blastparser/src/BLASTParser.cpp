@@ -162,6 +162,9 @@ RcppExport SEXP BuildIdentityMatrixUSEARCH(SEXP fnameU, SEXP sz /*Total reads*/,
     		}
     		// Calculating distance:
     		imatrix(_i, _j) = 1.0-imatrix(_i, _j);
+    		if (imatrix(_i, _j) == 0) {
+    			imatrix(_i, _j) = 0.0001;
+    		}
     	}
 	}
 	
