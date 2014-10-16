@@ -26,6 +26,7 @@ source("src/methods-Stat.R")
 source("src/methods-Affine.R")
 source("src/methods-Misc.R")
 source("src/methods-Triangulation.R")
+source("src/methods-Utils.R")
 # Libraries with functions used in MetAmp
 #library(seqinr,lib.loc=R_LIBS) # For manupulations with sequences
 #library(BLASTParser,lib.loc=R_LIBS) # Parses USEARCH output file
@@ -61,6 +62,9 @@ writeMessage(paste("Analysis path: ", analysis_path), logfile, F)
 writeMessage("Starting analysis...", logfile, T)
 
 #----Data preparation------#
+
+checkInputData() # Making sure that everything is alright.
+
 print(paste("Running preprocessing pipeline...") )
 writeMessage(paste("Running preprocessing pipeline..."), logfile, T)
 work_libs <- matrix(nrow=length(libs), ncol=3)
