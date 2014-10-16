@@ -11,23 +11,30 @@ dir_path <- "~/Projects/metamp/" # Path to the program directory
 analysis_dir <- "analysis" # Directory that keeps all analysis data and results
 
 
-setwd(dir_path) # Do not edit this line
+setwd(dir_path) #Do not edit this line
 
 # Provide your data here (can be raw or preprocessed libs, program assumes one file for each region):
 # Staggered community:
-#libs <- c("data/staggered/SRR072223_V13V31_1_relabeled.fastq", # V1-3
-#          "data/staggered/SRR072223_V35V53_1_relabeled.fastq", # V3-5
-#          "data/staggered/SRR072223_V69V96_1_relabeled.fastq") # V6-9
+libs <- c(#"data/staggered/SRR072223_V13V31_1_relabeled.fastq", # V1-3
+          #"data/staggered/SRR072223_V35V53_1_relabeled.fastq", # V3-5
+          "data/staggered/SRR072223_V69V96_1_relabeled.fastq") # V6-9
 # Even community:
-libs <- c("data/even/SRR072220_V13V31_relabeled.fastq", # V1-3
-          "data/even/SRR072220_V35V53_relabeled.fastq", # V3-5
-          "data/even/SRR072239_V69V96_relabeled.fastq") # V6-9
+#libs <- c("data/even/SRR072220_V13V31_relabeled.fastq")#, # V1-3
+          #"data/even/SRR072220_V35V53_relabeled.fastq", # V3-5
+          #"data/even/SRR072239_V69V96_relabeled.fastq") # V6-9
 
 # Reference sequences:
 ref16S <- "data/16S_gold_hmc.fasta"
-refs <- c("data/16S_gold_hmc_V13V31.fasta", # V1-3
-          "data/16S_gold_hmc_V35V53.fasta", # V3-5
+refs <- c(#"data/16S_gold_hmc_V13V31.fasta")#, # V1-3
+          #"data/16S_gold_hmc_V35V53.fasta", # V3-5
           "data/16S_gold_hmc_V69V96.fasta") # V6-9
+
+#ref16S <- "data/gold1500.fa"
+#refs <- c("data/gold1500_V13.fasta")#, # V1-3
+          #"data/gold1500_V35.fasta") #, # V3-5
+          #"data/gold1500_V69.fasta") # V6-9
+
+
 
 # Do not edit:
 source("config.R") # Link the configuration file with default program parameters and path to the data
