@@ -24,15 +24,15 @@ libs <- c(#"data/staggered/SRR072223_V13V31_1_relabeled.fastq", # V1-3
           #"data/even/SRR072239_V69V96_relabeled.fastq") # V6-9
 
 # Reference sequences:
-ref16S <- "data/16S_gold_hmc.fasta"
-refs <- c(#"data/16S_gold_hmc_V13V31.fasta")#, # V1-3
-          #"data/16S_gold_hmc_V35V53.fasta", # V3-5
-          "data/16S_gold_hmc_V69V96.fasta") # V6-9
+#ref16S <- "data/16S_gold_hmc.fasta"
+#refs <- c("data/16S_gold_hmc_V13V31.fasta")#, # V1-3
+#          "data/16S_gold_hmc_V35V53.fasta", # V3-5
+#          "data/16S_gold_hmc_V69V96.fasta") # V6-9
 
-#ref16S <- "data/gold1500.fa"
-#refs <- c("data/gold1500_V13.fasta")#, # V1-3
-          #"data/gold1500_V35.fasta") #, # V3-5
-          #"data/gold1500_V69.fasta") # V6-9
+ref16S <- "data/gold1500.fa"
+refs <- c("data/gold1500_V13.fasta", # V1-3
+          "data/gold1500_V35.fasta", # V3-5
+          "data/gold1500_V69.fasta") # V6-9
 
 
 
