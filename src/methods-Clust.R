@@ -34,7 +34,7 @@ cluster <- function(analysis_dir, default_pref, lib) {
 
 # Perform the final clustering with DBSCAN:
 clusterDBSCAN <- function(refnames, summary_matrix,scoresV) {
-  eps <- quantile(dist(summary_matrix),probs=0.001)[[1]] #0.025)
+  eps <- quantile(dist(summary_matrix),probs=0.0005)[[1]] #0.025)
   #tmp_clusters <- dbscan(summary_matrix[sample.int(nrow(summary_matrix)),],MinPts=2,  eps=eps)
   tmp_clusters <- dbscan(summary_matrix,MinPts=1,  eps=eps)
   #tmp_clusters <- dbscan(summary_matrix[sample.int(nrow(summary_matrix)),],MinPts=1,  eps*0.01)

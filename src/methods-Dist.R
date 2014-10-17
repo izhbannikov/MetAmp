@@ -48,7 +48,7 @@ generate_distance_matrix <- function(fnameREF16S, fnameREF="", fnameEMP="") {
   m_table <- c()
   for (i in 1:sz) {
     for (j in 1:dim(score16S)[1]) {
-      if ((d1[i,j]<0.06) && (i > dim(score16S)[1]) && (i != j)) {
+      if ((d1[i,j]<0.04) && (i > dim(score16S)[1]) && (i != j)) {
         #print(c(i,j))
         del = c(del,i)
         if ((rownames(identity_matrix)[i] %in% m_table) == F)
