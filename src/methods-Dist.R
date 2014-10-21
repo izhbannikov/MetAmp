@@ -20,7 +20,7 @@ generate_distance_matrix16S <- function(filename) {
   identity_matrix
 }
 
-generate_distance_matrix <- function(fnameREF16S, fnameREF="", fnameEMP="") {
+generate_distance_matrix <- function(fnameREF16S, fnameREF="", fnameEMP="", dt=0.04) {
   # This function calculates distance matrix between reference marker sequences and empirical reads.
   # fnameREF - guide (reference marker) reads
   # fnameEMP - empirical reads of microbial community of interest
@@ -48,7 +48,7 @@ generate_distance_matrix <- function(fnameREF16S, fnameREF="", fnameEMP="") {
   m_table <- c()
   for (i in 1:sz) {
     for (j in 1:dim(score16S)[1]) {
-      if ((d1[i,j]<0.04) && (i > dim(score16S)[1]) && (i != j)) {
+      if ((d1[i,j]<dt) && (i > dim(score16S)[1]) && (i != j)) {
         #print(c(i,j))
         del = c(del,i)
         if ((rownames(identity_matrix)[i] %in% m_table) == F)
@@ -59,19 +59,21 @@ generate_distance_matrix <- function(fnameREF16S, fnameREF="", fnameEMP="") {
   keep.idx <- setdiff(seq_len(nrow(d1)), del)
   identity_matrix = d1[keep.idx, keep.idx]
   identity_matrix
-  m_table <- matrix(m_table, ncol=2, byrow=T)
+  if (length(m_table>=2)) {
+    m_table <- matrix(m_table, ncol=2, byrow=T)
+  }
   list(identity_matrix, m_table)
 }
 
 
 # This function reads/generates distance matrices for all provided guide sequences.
 #readDistanceMatrices <- function(use_custom_matrix = F, work_libs) {
-readDistanceMatrices <- function(ref_16S, work_libs) {
+readDistanceMatrices <- function(ref_16S, work_libs, dt=0.04) {
   scoresV <- list()
   merged_table <- list()
   for(i in 1:length(libs)) {
     cat("Library: ", basename(work_libs[i,1]),'\n')
-    distances <- generate_distance_matrix(fnameREF16S=ref_16S, fnameREF=refs[i], fnameEMP=work_libs[i,1])
+    distances <- generate_distance_matrix(fnameREF16S=ref_16S, fnameREF=refs[i], fnameEMP=work_libs[i,1], dt)
     scoresV[[i]] <- distances[[1]]
     merged_table[[i]] <- distances[[2]]
   }
