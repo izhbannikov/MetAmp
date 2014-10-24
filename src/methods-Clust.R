@@ -88,7 +88,7 @@ getRefOTUNum <- function(ref_points, otu) {
 cluster2 <- function(analysis_dir, lib, num) {
   # Denoising:
   denoisedlib <- paste(analysis_dir, "/", basename(lib), "_denoised", sep='')
-  system(paste(usearch7, "-fastq_filter", lib,  "-fastaout", denoisedlib, "-fastq_truncqual 15 -fastq_trunclen 250"))
+  system(paste(usearch7, "-fastq_filter", lib,  "-fastaout", denoisedlib, "-fastq_truncqual", qual, "-fastq_trunclen", min_len)) # "-fastq_truncqual 15 -fastq_trunclen 250"
   # Dereplication:
   dreplib <- paste(denoisedlib, "_drep", sep='')
   system(paste(usearch7, "-derep_fulllength", denoisedlib, "-output", dreplib, "-sizeout"))

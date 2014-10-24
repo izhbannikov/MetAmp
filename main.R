@@ -30,10 +30,10 @@ refs <- c("data/16S_gold_hmc_V13V31.fasta", # V1-3
           "data/16S_gold_hmc_V69V96.fasta") # V6-9
 
 # Reference sequences (larger dataset, 1500 microbial species):
-#ref16S <- "data/gold.fa"
-#refs <- c("data/gold_V13.fasta", # V1-3
-#          "data/gold_V35.fasta", # V3-5
-#          "data/gold_V69.fasta") # V6-9
+#ref16S <- "data/gold1500.fa"
+#refs <- c("data/gold1500_V13.fasta")#, # V1-3
+#          "data/gold1500_V35.fasta", # V3-5
+#          "data/gold1500_V69.fasta") # V6-9
 
 # Do not edit:
 source("config.R") # Link the configuration file with default program parameters and path to the data

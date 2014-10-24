@@ -13,9 +13,17 @@ assignClusters <- function(tmp_clusters, work_libs) {
       }
     }
   }
+  final_clusters <- list()
+  j=1
+  for (i in 1:length(tmp_final_clusters)) {
+    if (length(which(tmp_final_clusters[[i]] %in% rownames(score16S)) == T) != length(tmp_final_clusters[[i]]) ) {
+      final_clusters[[j]] <- tmp_final_clusters[[i]]
+      j <- j+1
+    }
+  }
 
   #tmp_final_clusters <- tmp_final_clusters[!sapply(tmp_final_clusters, is.null)]
-  tmp_final_clusters
+  final_clusters
   
   # Calculating the mean number of points in each cluster:
   #final_statistics = vector(mode="list", length=length(unique(tmp_clusters$cluster)))
