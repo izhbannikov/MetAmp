@@ -13,6 +13,9 @@ if (Sys.info()['sysname'] == "Darwin") { # OS-X
 if (Sys.info()['sysname'] == "Linux") { # Linux
   usearch7 <- "bin/./usearch7.0.1090_i86linux32"
 }
+#--------------Denoising----------------------------------------------#
+min_len <- 250
+qual <- 15
 #--------------Miscellaneous------------------------------------------#
 # Path to installed BLASTParser library:
 R_LIBS <- "R_Lib"
