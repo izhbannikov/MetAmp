@@ -50,19 +50,22 @@ Detailed description of these datasets (and sequencing protocols) you can find u
 To run the program on test data run the following script:
 
 ```
-python metamp.py -r data/gold21/gold21.fasta -r1 data/gold21/gold21_V13V31.fasta -l1 data/even/SRR072220_V13V31_relabeled.fastq -r2 data/gold21/gold21_V35V53.fasta -l2 data/even/SRR072220_V35V53_relabeled.fastq -l3 data/even/SRR072239_V69V96_relabeled.fastq -r3 data/gold21/gold21_V69V96.fasta -o ~/test
+python metamp.py -o ~/test -r data/gold21/gold21.fasta \
+			-r1 data/gold21/gold21_V13V31.fasta -l1 data/even/SRR072220_V13V31_relabeled.fastq \
+			-r2 data/gold21/gold21_V35V53.fasta -l2 data/even/SRR072220_V35V53_relabeled.fastq \
+			-r3 data/gold21/gold21_V69V96.fasta -l3 data/even/SRR072239_V69V96_relabeled.fastq			
 ```
 
 Here:
-*```metamp.py``` - the name of starting script.
-*```-r data/gold21/gold21.fasta``` - passing the reference file, that contains whole 16S sequences, in forward and reverse complement.
-*```-r1 data/gold/gold21\_V13V31.fasta``` - passing the reference file that contains marker (region V1-3) sequences extracted from gold21.fasta (whole 16S), in forward and reverse complement.\\
-*```-l1 data/even/SRR072220\_V13V31\_relabeled.fastq``` - amplicon emprirical reads for marker V1-3. "relabeled" means that a barcode sequences were attached to each read label.\\
-*```-r2 data/gold/gold21\_V13V31.fasta``` - passing the reference file that contains marker (region V3-5) sequences extracted from gold21.fasta (whole 16S), in forward and reverse complement.\\
-*```-l2 data/even/SRR072220_V35V53_relabeled.fastq``` - amplicon emprirical reads for marker V3-5. "relabeled" means that a barcode sequences were attached to each read label.\\
-*```-r3 data/gold/gold21\_V13V31.fasta``` - passing the reference file that contains marker (region V6-9) sequences extracted from gold21.fasta (whole 16S), in forward and reverse complement.\\
-*```-l3 data/even/SRR072239_V69V96_relabeled.fastq``` - amplicon emprirical reads for marker V6-9. "relabeled" means that a barcode sequences were attached to each read label.\\
-*```-o ~/test``` - output directory with all analysis results.
+* ```metamp.py``` - the name of starting script.
+* ```-r data/gold21/gold21.fasta``` - passing the reference file, that contains whole 16S sequences, in forward and reverse complement.
+* ```-r1 data/gold/gold21\_V13V31.fasta``` - passing the reference file that contains marker (region V1-3) sequences extracted from gold21.fasta (whole 16S), in forward and reverse complement.\\
+* ```-l1 data/even/SRR072220\_V13V31\_relabeled.fastq``` - amplicon emprirical reads for marker V1-3. "relabeled" means that a barcode sequences were attached to each read label.\\
+* ```-r2 data/gold/gold21\_V13V31.fasta``` - passing the reference file that contains marker (region V3-5) sequences extracted from gold21.fasta (whole 16S), in forward and reverse complement.\\
+* ```-l2 data/even/SRR072220_V35V53_relabeled.fastq``` - amplicon emprirical reads for marker V3-5. "relabeled" means that a barcode sequences were attached to each read label.\\
+* ```-r3 data/gold/gold21\_V13V31.fasta``` - passing the reference file that contains marker (region V6-9) sequences extracted from gold21.fasta (whole 16S), in forward and reverse complement.\\
+* ```-l3 data/even/SRR072239_V69V96_relabeled.fastq``` - amplicon emprirical reads for marker V6-9. "relabeled" means that a barcode sequences were attached to each read label.\\
+* ```-o ~/test``` - output directory with all analysis results.
 
 
 # How to run the program on your data
@@ -92,7 +95,9 @@ You have to do sample pooling and merging paired-end Illumina libraries (if your
 ## 3. Run the script ```metamp.py```
 
 ```
-python metamp.py -o [--output] -r [--ref] <reference 16S seqs> -r1 [--ref1] <reference marker seqs> -l1 [--lib1] <your amplicon library>
+python metamp.py -o [--output] -r [--ref] <reference 16S seqs> \
+			-r1 [--ref1] <reference marker seqs> -l1 [--lib1] <your amplicon library> \
+			[options]
 ```
 Here is the description of command line arguments:
 
