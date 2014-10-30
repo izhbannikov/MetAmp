@@ -22,22 +22,7 @@ assignClusters <- function(tmp_clusters, work_libs) {
     }
   }
 
-  #tmp_final_clusters <- tmp_final_clusters[!sapply(tmp_final_clusters, is.null)]
   final_clusters
-  
-  # Calculating the mean number of points in each cluster:
-  #final_statistics = vector(mode="list", length=length(unique(tmp_clusters$cluster)))
-  #for (i in 1:length(tmp_final_clusters)) {
-  #  final_statistics[[i]] <- mean( length(which( (tmp_final_clusters[[i]] %in% rownames(norm_data_v13[[2]]) ) == T))+1, length(which( (tmp_final_clusters[[i]] %in% rownames(norm_data_v35[[2]]) ) == T))+1, length(which( (tmp_final_clusters[[i]] %in% rownames(norm_data_v69[[2]]) ) == T))+1 )
-  #}
-
-  #tf_array <- matrix(0, nrow=1, ncol=length(tmp_final_clusters))
-  #for (i in seq(length(tmp_final_clusters))) {
-  # tf_array[1,i] <- length(which((rownames(mds16S) %in% tmp_final_clusters[[i]])==T))
-  #}
-  #if (max(tf_array) <= 20) {
-  #  break
-  #} 
   
 }
 

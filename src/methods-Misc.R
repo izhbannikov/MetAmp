@@ -216,7 +216,7 @@ write_coordinates <- function(filename) {
     for (j in 1:dim(merged_table[[i]])[1]) {
       coords <- c(summary_matrix[merged_table[[i]][j,1],] + runif(1, min = 0, max = 0.001))
       string_to_write <- paste(toString(merged_table[[i]][j,2]), coords[1], coords[2])
-      print(string_to_write)
+      #print(string_to_write) - printing to the screen is disabled
       write(x=string_to_write,file=filename,append=T)
     }
   }

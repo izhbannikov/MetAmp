@@ -1,6 +1,6 @@
 #A function that implements the affine transformation:
 affine_transform <- function(P, Q) {
-  A <- Q %*% t(P) %*% solve(P %*% t(P),tol=.Machine$double.eps/10000000000000000000)
+  A <- Q %*% t(P) %*% solve(P %*% t(P),tol=.Machine$double.eps/10000000000000000000000000)
   A
 }
 
