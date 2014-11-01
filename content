@@ -1,11 +1,11 @@
-total 2208
--rwxr-xr-x@  1 ilya  staff   1.3K Oct 30 00:36 Makefile
-drwxr-xr-x   5 ilya  staff   170B Oct 29 23:06 Packages
--rwxr-xr-x@  1 ilya  staff   7.4K Oct 30 12:41 README.md
--rw-r--r--   1 ilya  staff   1.1M Oct 30 22:53 UserGuide.pdf
-drwxr-xr-x   7 ilya  staff   238B Oct 29 23:06 bin
--rwxr-xr-x   1 ilya  staff     0B Oct 30 22:53 content
-drwxr-xr-x   9 ilya  staff   306B Oct 30 10:27 data
--rw-r--r--@  1 ilya  staff   6.5K Oct 30 10:19 metamp.py
-drwxr-xr-x  22 ilya  staff   748B Oct 29 23:24 python_scripts
-drwxr-xr-x  19 ilya  staff   646B Oct 30 08:52 src
+Makefile
+Packages
+README.md
+R_Lib
+UserGuide.pdf
+bin
+content
+data
+metamp.py
+python_scripts
+src
