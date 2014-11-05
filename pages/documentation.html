@@ -55,16 +55,18 @@
 	
 	<h3>Installation</h3>
 	<p>Download or clone from the GitHub, save it in some folder you wish. Then simply run make. This will check for required packages and install in case if some packages were not found.</p>
-
+	<pre>$cd MetAmp_home_directory
+$make</pre>
+	
 	<h3>Quick start</h3>
 	
 	<p>
 	Before analysis, you may need to perform re-labeling of your read headers: a read header should contain barcodelabel (see more at www.drive5.com), for example:
 
-<blockquote><pre>@read1;barcodelabel=TCAG;
+<pre>@read1;<strong>barcodelabel=TCAG</strong>;
 GATGAACGCTGGCGGCGTGCCTAATACATGCAAGT...AT
 +
-IIIAAAIIIIIIIIIIIIIIIHHHIAAAAAAAAAA...II</pre></blockquote>
+IIIAAAIIIIIIIIIIIIIIIHHHIAAAAAAAAAA...II</pre>
 
 If you use Illumina sequence data, you also have to merge overlapping paired-end reads.
 
@@ -74,7 +76,7 @@ Later I will provide the scripts that can do these things above, but for now you
 	
 	<p>To run the program, you have to provide reference libraries, your amplicon data and output directory where all analysis results will be strored.	</p>
 	<p><strong>One marker region:</strong></p>
-		<pre>python metamp.py -r data/gold21/gold21.fasta -r1 data/gold21/gold21_V13V31.fasta -l1 data/even/SRR072220_V13V31_relabeled.fastq -o test</pre>
+		<pre>$python metamp.py -r data/gold21/gold21.fasta -r1 data/gold21/gold21_V13V31.fasta -l1 data/even/SRR072220_V13V31_relabeled.fastq -o test</pre>
 			Here:
 			<ul>
 				<p><code>metamp.py</code> - a program name.</p>
@@ -84,7 +86,7 @@ Later I will provide the scripts that can do these things above, but for now you
 				<p><code>-o test</code> - output directory with all analysis results.</p>
 			</ul>
 		<p><strong>Three marker regions:</strong></p>
-			<pre>python metamp.py -r data/gold21/gold21.fasta -r1 data/gold21/gold21_V13V31.fasta -l1 data/even/SRR072220_V13V31_relabeled.fastq -r2 data/gold21/gold21_V35V53.fasta -l2 data/even/SRR072220_V35V53_relabeled.fastq -r3 data/gold21/gold21_V69V96.fasta -l3 data/even/SRR072239_V69V96_relabeled.fastq -o test</pre>
+			<pre>$python metamp.py -r data/gold21/gold21.fasta -r1 data/gold21/gold21_V13V31.fasta -l1 data/even/SRR072220_V13V31_relabeled.fastq -r2 data/gold21/gold21_V35V53.fasta -l2 data/even/SRR072220_V35V53_relabeled.fastq -r3 data/gold21/gold21_V69V96.fasta -l3 data/even/SRR072239_V69V96_relabeled.fastq -o test</pre>
 			<p>Here:</p>
 			<ul>
 			<p><code>-r2 data/gold21/gold21 V35V53.fasta</code> - a reference file that contains marker (re- gion V3-5) sequences extracted from gold21.fasta (whole 16S), in forward and reverse com- plement.</p>
