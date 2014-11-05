@@ -69,51 +69,38 @@ IIIAAAIIIIIIIIIIIIIIIHHHIAAAAAAAAAA...II</pre></blockquote>
 If you use Illumina sequence data, you also have to merge overlapping paired-end reads.
 
 Later I will provide the scripts that can do these things above, but for now you can simply use scripts provided at 
-<a href="http://drive5.com">www.drive5.com</a>.
-	
+<a href="http://drive5.com">www.drive5.com</a>. 
 	</p>
 	
-	<ol>
-		<li>
-			<p>Set the program and analysis directories in main.R:</p>
-		
-			<blockquote><pre>
-dir_path <- "~/Projects/metamp/"
-analysis_dir <- "analysis"</pre></blockquote>
-		</li>
-		<li>
-			<p>Provide your sequences (in main.R file)</p>
-			<p>Amplicon data:</p>
-			<blockquote><pre>
-libs <- c("data/staggered/SRR072223_V13V31_1_relabeled.fastq",
-	 "data/staggered/SRR072223_V35V53_1_relabeled.fastq",
-	 "data/staggered/SRR072223_V69V96_1_relabeled.fastq")</pre></blockquote>
-			<p>and reference sequences:</p>
-			<blockquote><pre>
-ref16S <- "data/16S_gold_hmc.fasta"
-refs <- c("data/16S_gold_hmc_V13V31.fasta", # V1-3
-          "data/16S_gold_hmc_V35V53.fasta", # V3-5
-          "data/16S_gold_hmc_V69V96.fasta") # V6-9</pre></blockquote>
-		</li>
-		<li>
-			<p>Run the script main.R</p>
-			<blockquote><pre>source("main.R")</pre></blockquote>	
-		</li>
-		<li>
-			<p>Output files will be in analysis directory:</p>
-			<ul>			
-    			<li>clusters.clstr - contains large table in uc format (see www.drive5.com)</li>
-    			<li>otu_table.txt - OTU table, where rows are OTUs and colums are barcodes.</li>
-    			<li>coordinates.crd - file that contains NMDS coordinates of each point (reference and empirical, see provided explanations in UserGuide.pdf)</li>
-    			<li>log.txt - a simple log file that record every stage of analysis.</li>
+	<p>To run the program, you have to provide reference libraries, your amplicon data and output directory where all analysis results will be strored.	</p>
+	<p><strong>One marker region:</strong></p>
+		<pre>python metamp.py -r data/gold21/gold21.fasta -r1 data/gold/gold21_V13V31.fasta -l1 data/even/SRR072220_V13V31_relabeled.fastq -o test</pre>
+			Here:
+			<ul>
+				<p><code>metamp.py</code> - a program name.</p>
+				<p><code>-r data/gold21/gold21.fasta</code> - passing the reference file, that contains whole 16S sequences, in forward and reverse complement.</p>
+				<p><code>-r1 data/gold/gold21 V13V31.fasta</code> - passing the reference file that contains marker (region V1-3) sequences extracted from gold21.fasta (whole 16S), in forward and reverse complement.</p>
+				<p><code>-l1 data/even/SRR072220 V13V31 relabeled.fastq</code> - amplicon emprirical reads. ”relabeled” means that a barcode sequences were attached to each read label.</p>
+				<p><code>-o test</code> - output directory with all analysis results.</p>
 			</ul>
-		
-		
-		</li>
-	</ol>
-	
-
-  </div>
+		<p><strong>Three marker regions:</strong></p>
+			<pre>python metamp.py -r data/gold21/gold21.fasta -r1 data/gold/gold21_V13V31.fasta -l1 data/even/SRR072220_V13V31_relabeled.fastq -r2 data/gold/gold21_V35V53.fasta -l2 data/even/SRR072220_V35V53_relabeled.fastq -r3 data/gold/gold21_V69V96.fasta -l3 data/even/SRR072239_V69V96_relabeled.fastq -o test</pre>
+			<p>Here:</p>
+			<ul>
+			<p><code>-r2 data/gold/gold21 V35V53.fasta</code> - a reference file that contains marker (re- gion V3-5) sequences extracted from gold21.fasta (whole 16S), in forward and reverse com- plement.</p>
+				<p><code>-l2 data/even/SRR072220 V35V53 relabeled.fastq</code> - amplicon empirical reads.</p>
+				<p><codee>-r3 data/gold/gold21 V69V96.fasta</code>- a reference file that contains marker (re- gion V3-5) sequences extracted from gold21.fasta (whole 16S), in forward and reverse com- plement.</p>
+				<p><code>-l3 data/even/SRR072239 V69V96 relabeled.fastq</code> - amplicon empirical reads.</p>
+			</ul>
+		<p>To get help from the program, you can run <code>python metamp.py -h</code></p>
+		<p>Output files will be in analysis directory that you provided with the -o command:</p>
+			<ul>			
+    			<p><samp>clusters.clstr</samp> - contains large table in uc format (see www.drive5.com).</p>
+    			<p><samp>otu_table.txt</samp> - OTU table, where rows are OTUs and colums are barcodes.</p>
+    			<p><samp>coordinates.crd</samp> - file that contains NMDS coordinates of each point (reference and empirical, see provided explanations in UserGuide.pdf).</p>
+    			<p><samp>log.txt</samp> - a simple log file that record every stage of analysis.</p>
+			</ul>
+	</div>
 </div>
 
 
