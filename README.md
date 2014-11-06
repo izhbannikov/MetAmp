@@ -143,6 +143,10 @@ Here is the description of command line arguments:
                         Amplicon sequences for marker #8
   -l9 LIB9, --lib9 LIB9
                         Amplicon sequences for marker #9
+  -qual QUAL, --qual QUAL
+                        Quality score threshold (default=15)
+  -minlen MINLEN, --minlen MINLEN
+                        Minimum read length (default=250)
 ```
 
 ## 4. Output files

@@ -35,6 +35,9 @@ def main():
 	parser.add_argument("-l7", "--lib7", dest="lib7", help="Amplicon sequences for marker #7", action="store")
 	parser.add_argument("-l8", "--lib8", dest="lib8", help="Amplicon sequences for marker #8", action="store")
 	parser.add_argument("-l9", "--lib9", dest="lib9", help="Amplicon sequences for marker #9", action="store")
+	# Quality trimming parameters:
+	parser.add_argument("-qual", "--qual", dest="qual", type=int, help="Quality score threshold", action="store", default=15)
+	parser.add_argument("-minlen", "--minlen", type=int, dest="minlen", help="Minimum read length", action="store", default=250)
    	# Getting args from command line:
    	args = parser.parse_args()
    	
@@ -118,7 +121,9 @@ def main():
 									"--lib6", str(args.lib6),
 									"--lib7", str(args.lib7),
 									"--lib8", str(args.lib8),
-									"--lib9", str(args.lib9)])
+									"--lib9", str(args.lib9),
+									"--qual", str(args.qual),
+									"--minlen", str(args.minlen)])
 	except :
 		print "Can't run Rscript. Perhaps R is not installed. Terminating..."
 		sys.exit(2)

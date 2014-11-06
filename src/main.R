@@ -69,7 +69,11 @@ option_list <- list(
   make_option(c("-l9", "--lib9"), type="character", dest="lib9", action = "store",
               help="Amplicon library for marker 9 region"),
   make_option(c("-o", "--output"), type="character", dest="output", action = "store",
-              help = "Output analysis directory")
+              help = "Output analysis directory"),
+  make_option(c("-qual", "--qual"), type="numeric", dest="qual", action = "store",
+              help = "Quality threshold"),
+  make_option(c("-minlen", "--minlen"), type="numeric", dest="minlen", action = "store",
+              help = "Minimum read length")
 )
 
 # Parsing command line arguments:
@@ -81,6 +85,9 @@ opt<-parse_args(parser, args = args)
 dir_path <- paste(opt$script_dir,"/",sep='')
 analysis_dir <- opt$output
 ref16S <- opt$ref16S
+# Quality trimming parameters:
+qual <- as.numeric(opt$qual)
+min_len <- as.numeric(opt$minlen)
 
 refs <- c()
 if (opt$ref1 != "None") {
