@@ -18,6 +18,9 @@ check :
 install :
 	mkdir -p $(rlibs_dir)
 	
+	@echo "Installed required libraries..."
+	Rscript $(package_dir)/Install.R
+	
 	@echo "Installing BLASTParser package..."
 	@rm -rf $(package_dir)/blastparser/src/*.o
 	@rm -rf $(package_dir)/blastparser/src/*.so
