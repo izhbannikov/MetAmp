@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
 # MetAmp - a software application for meta-amplicon data analysis.
 # Written by Ilya Y. Zhbannikov, Feb 2, 2014
-# Updated on October 12, 2014
+# Updated on November 9, 2014
 
-# Installing required libraries:
-print("Checking for required packages...")
-default_repo = "http://cran.us.r-project.org"
-if("seqinr" %in% rownames(installed.packages()) == FALSE) {install.packages("seqinr", repos=default_repo)}
-if("tripack" %in% rownames(installed.packages()) == FALSE) {install.packages("tripack", repos=default_repo)}
-if("RANN" %in% rownames(installed.packages()) == FALSE) {install.packages("RANN", repos=default_repo)}
-if("fpc" %in% rownames(installed.packages()) == FALSE) {install.packages("fpc", repos=default_repo)}
-if("amap" %in% rownames(installed.packages()) == FALSE) {install.packages("amap", repos=default_repo)}
-if("foreach" %in% rownames(installed.packages()) == FALSE) {install.packages("foreach", repos=default_repo)}
-if("ShortRead" %in% rownames(installed.packages()) == FALSE) {
-  source("http://bioconductor.org/biocLite.R")
-  biocLite("ShortRead")
-}
-if("Rcpp" %in% rownames(installed.packages()) == FALSE) {install.packages("Rcpp", repos=default_repo)}
-if("stringr" %in% rownames(installed.packages()) == FALSE) {install.packages("stringr", repos=default_repo)}
-if("MASS" %in% rownames(installed.packages()) == FALSE) {install.packages("MASS", repos=default_repo)}
-if("optparse" %in% rownames(installed.packages()) == FALSE) {install.packages("optparse", repos=default_repo)}
+## Installing required libraries:
+#print("Checking for required packages...")
+#default_repo = "http://cran.us.r-project.org"
+#if("seqinr" %in% rownames(installed.packages()) == FALSE) {install.packages("seqinr", repos=default_repo)}
+#if("tripack" %in% rownames(installed.packages()) == FALSE) {install.packages("tripack", repos=default_repo)}
+#if("RANN" %in% rownames(installed.packages()) == FALSE) {install.packages("RANN", repos=default_repo)}
+#if("fpc" %in% rownames(installed.packages()) == FALSE) {install.packages("fpc", repos=default_repo)}
+#if("amap" %in% rownames(installed.packages()) == FALSE) {install.packages("amap", repos=default_repo)}
+#if("foreach" %in% rownames(installed.packages()) == FALSE) {install.packages("foreach", repos=default_repo)}
+#if("ShortRead" %in% rownames(installed.packages()) == FALSE) {
+#  source("http://bioconductor.org/biocLite.R")
+#  biocLite("ShortRead")
+#}
+#if("Rcpp" %in% rownames(installed.packages()) == FALSE) {install.packages("Rcpp", repos=default_repo)}
+#if("stringr" %in% rownames(installed.packages()) == FALSE) {install.packages("stringr", repos=default_repo)}
+#if("MASS" %in% rownames(installed.packages()) == FALSE) {install.packages("MASS", repos=default_repo)}
+#if("optparse" %in% rownames(installed.packages()) == FALSE) {install.packages("optparse", repos=default_repo)}
 
 library(optparse)
 
