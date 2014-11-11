@@ -8,6 +8,8 @@ if("seqinr" %in% rownames(installed.packages()) == FALSE) {install.packages("seq
 if("tripack" %in% rownames(installed.packages()) == FALSE) {install.packages("tripack", repos=default_repo)}
 if("RANN" %in% rownames(installed.packages()) == FALSE) {install.packages("RANN", repos=default_repo)}
 if("modeltools" %in% rownames(installed.packages()) == FALSE) {install.packages("modeltools", repos=default_repo)}
+if("robustbase" %in% rownames(installed.packages()) == FALSE) {install.packages("robustbase", repos=default_repo)}
+if("ade4" %in% rownames(installed.packages()) == FALSE) {install.packages("ade4", repos=default_repo)}
 if("fpc" %in% rownames(installed.packages()) == FALSE) {install.packages("fpc", repos=default_repo)}
 if("amap" %in% rownames(installed.packages()) == FALSE) {install.packages("amap", repos=default_repo)}
 if("foreach" %in% rownames(installed.packages()) == FALSE) {install.packages("foreach", repos=default_repo)}
