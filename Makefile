@@ -1,7 +1,7 @@
 #
 package_dir="Packages"
 rlibs_dir="R_Lib"
-#
+t=
 all : check install
 
 check :
@@ -18,9 +18,11 @@ check :
 install :
 	mkdir -p $(rlibs_dir)
 	
+	@read -r -p "Update installed R-packages? [y/N]: " upd; \
+	[ "$$upd" == "N" ] || [ "$$upd" == "n" ] || (([ "$$upd" == "y" ] || [ "$$upd" == "Y" ] || [ "$$upd" == \n ]) && Rscript $(package_dir)/update.R);
+	
 	@echo "Installed required libraries..."
 	Rscript $(package_dir)/install.R
-	
 	@echo "Installing BLASTParser package..."
 	@rm -rf $(package_dir)/blastparser/src/*.o
 	@rm -rf $(package_dir)/blastparser/src/*.so

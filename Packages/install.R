@@ -2,8 +2,10 @@
 # This is an installation script
 #
 # Installing required libraries:
-print("Checking for required packages...")
+
 default_repo = "http://cran.us.r-project.org"
+
+print("Checking for required packages...")
 if("seqinr" %in% rownames(installed.packages()) == FALSE) {install.packages("seqinr", repos=default_repo)}
 if("tripack" %in% rownames(installed.packages()) == FALSE) {install.packages("tripack", repos=default_repo)}
 if("RANN" %in% rownames(installed.packages()) == FALSE) {install.packages("RANN", repos=default_repo)}
