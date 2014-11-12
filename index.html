@@ -19,7 +19,24 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
     <link href="css/kbroman.css" rel="stylesheet" type="text/css" media="all">
-         
+    
+    <script>
+		function toggle() {
+    		var element = document.getElementById("f1");
+
+    		if (element) {
+        		var display = element.style.display;
+			
+        		if (display == "none") {
+            		element.style.display = "block";
+        		} else {
+            		element.style.display = "none";
+        		}
+    		}
+		}
+	</script>
+
+	
   </head>
   
   <body>
@@ -72,6 +89,21 @@
   </li>
 </ul>
 
+	<button type="button" onclick="toggle()">Provide feedback</button>
+  	
+  	<form id="f1" style="display: none;">
+		Your name (required): <br>
+		<input type="text" name="realname" size="50"><br>
+		
+		Your email: <br>
+		<input type="text" name="email"><br>
+		
+		Your comments: <br>
+		<textarea name="comments" rows="5" cols="90"></textarea><br><br>
+
+		<input type="submit" value="Submit">
+ 
+	</form>
 
 
   </div>
