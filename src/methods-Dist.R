@@ -14,9 +14,9 @@ generate_distance_matrix16S <- function(filename) {
   #identity_matrix <- BuildDistanceMatrixUSEARCH_v8(filename, usearch_out)
   #identity_matrix[which(duplicated(identity_matrix)==T),] <- identity_matrix[which(duplicated(identity_matrix)==T),] + runif(length(which(duplicated(identity_matrix)==T)), 0.0001, 0.1)
   #identity_matrix
-  system(paste(usearch, "-acceptall -allpairs_global", filename, "-uc", usearch_out)) # &
+  system(paste(usearch, "-acceptall -allpairs_global", filename, "-uc", usearch_out))
   identity_matrix <- BuildIdentityMatrixUSEARCH(filename, filename, usearch_out, F)
-  #identity_matrix[which(duplicated(identity_matrix)==T),] <- identity_matrix[which(duplicated(identity_matrix)==T),] + runif(length(which(duplicated(identity_matrix)==T)), 0.0001, 0.1)
+  identity_matrix[which(duplicated(identity_matrix)==T),] <- identity_matrix[which(duplicated(identity_matrix)==T),] + runif(length(which(duplicated(identity_matrix)==T)), 0.0000001, 0.00001)
   identity_matrix
 }
 
@@ -37,10 +37,9 @@ generate_distance_matrix <- function(fnameREF16S, fnameREF="", fnameEMP="", dt=0
   #identity_matrix <- BuildDistanceMatrixUSEARCH_v8(ref_emp, dmx_out)
   #identity_matrix[which(duplicated(identity_matrix)==T),] <- identity_matrix[which(duplicated(identity_matrix)==T),] + runif(length(which(duplicated(identity_matrix)==T)), 0.0001, 0.1)
   #identity_matrix
-  
   system(paste(usearch, "-acceptall -allpairs_global", ref_emp, "-uc", dmx_out)) # &
   identity_matrix <- BuildIdentityMatrixUSEARCH(fnameREF16S, ref_emp, dmx_out, T)
-  #identity_matrix[which(duplicated(identity_matrix)==T),] <- identity_matrix[which(duplicated(identity_matrix)==T),] + runif(length(which(duplicated(identity_matrix)==T)), 0.0001, 0.001)
+  identity_matrix[which(duplicated(identity_matrix)==T),] <- identity_matrix[which(duplicated(identity_matrix)==T),] + runif(length(which(duplicated(identity_matrix)==T)), 0.0000001, 0.00001)
   # Merge highly similar objects:
   d1 = identity_matrix
   sz = dim(d1)[1]

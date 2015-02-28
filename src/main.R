@@ -146,7 +146,7 @@ if (opt$lib8 != "None") {
 if (opt$lib9 != "None") {
   libs <- c(libs, opt$lib9)
 }
-
+#setwd("~/Projects/metamp/")
 source("src/config.R") # Link the configuration file with default program parameters and path to the data
 #==============Source files=================#
 source("src/methods-Denoising.R")
@@ -178,6 +178,7 @@ source("src/metamp.R") # Link the analysis pipeline
 # Under R-environment: source("main.R")
 #
 ## Set the work directory:
+# For test
 #dir_path <- "~/Projects/metamp/" # Path to the program directory
 #analysis_dir <- "analysis" # Directory that keeps all analysis data and results
 #
@@ -185,16 +186,17 @@ source("src/metamp.R") # Link the analysis pipeline
 #
 ## Provide your data here (can be raw or preprocessed libs, program assumes one file for each region):
 ## Even Human Mock Community (all 22 species are in roughly equal concentration):
+#==for test
 #libs <- c("data/even/SRR072220_V13V31_relabeled.fastq", # V1-3
 #          "data/even/SRR072220_V35V53_relabeled.fastq", # V3-5
 #          "data/even/SRR072239_V69V96_relabeled.fastq") # V6-9
 #
 ## Reference sequences (small dataset, 21 microbial species and one eucariote):
 #ref16S <- "data/16S_gold_hmc.fasta"
-#refs <- c("data/16S_gold_hmc_V13V31.fasta", # V1-3
-#          "data/16S_gold_hmc_V35V53.fasta", # V3-5
-#          "data/16S_gold_hmc_V69V96.fasta") # V6-9
-#
+#refs <- c("~/Projects/metamp/data/gold/gold_V13.fasta", # V1-3
+#          "~/Projects/metamp/data/gold/gold_V35.fasta", # V3-5
+#          "~/Projects/metamp/data/gold/gold_V69.fasta") # V6-9
+#==end for test
 # Do not edit:
 #source("config.R") # Link the configuration file with default program parameters and path to the data
 #source("metamp.R") # Link the analysis pipeline

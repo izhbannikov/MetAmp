@@ -3,6 +3,7 @@ import subprocess
 import argparse
 import traceback
 import os
+import time
 
 src_path = "src/main.R"
 
@@ -10,6 +11,8 @@ def run() :
 	return
 	
 def main():
+	start = time.time()
+	
 	# Parsing command-line variables
 	parser = argparse.ArgumentParser(prog='metamp.py', usage='%(prog)s -o [--output] -r [--ref] <reference 16S seqs> -r1 [--ref1] <reference marker seqs> -l1 [--lib1] <your amplicon library> [options]') # argparse parser initialization
    	# Adding arguments:
@@ -124,8 +127,14 @@ def main():
 									"--lib9", str(args.lib9),
 									"--qual", str(args.qual),
 									"--minlen", str(args.minlen)])
+		done = time.time()
+		elapsed = done - start
+		print "Elapsed time:", elapsed
 	except :
 		print "Can't run Rscript. Perhaps R is not installed. Terminating..."
+		done = time.time()
+		elapsed = done - start
+		print "Elapsed time:", elapsed
 		sys.exit(2)
 		
 if __name__ == '__main__' :
