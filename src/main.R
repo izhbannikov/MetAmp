@@ -146,9 +146,9 @@ if (opt$lib8 != "None") {
 if (opt$lib9 != "None") {
   libs <- c(libs, opt$lib9)
 }
-#setwd("~/Projects/metamp/")
-source("src/config.R") # Link the configuration file with default program parameters and path to the data
+
 #==============Source files=================#
+source("src/config.R") # Link the configuration file with default program parameters and path to the data
 source("src/methods-Denoising.R")
 source("src/methods-Merge.R")
 source("src/methods-Convert.R")
@@ -159,6 +159,7 @@ source("src/methods-Affine.R")
 source("src/methods-Misc.R")
 source("src/methods-Triangulation.R")
 source("src/methods-Utils.R")
+
 #----Create "analysis" and "tmp" directories------#
 analysis_path <- paste(analysis_dir,sep='')
 system(paste("mkdir", analysis_path))
