@@ -4,7 +4,7 @@
 # Installing required libraries:
 
 default_repo = "http://cran.us.r-project.org"
-.libPaths("Packages")
+
 print("Checking for required packages...")
 if("seqinr" %in% rownames(installed.packages()) == FALSE) {install.packages("seqinr", repos=default_repo, lib="Packages")}
 if("tripack" %in% rownames(installed.packages()) == FALSE) {install.packages("tripack", repos=default_repo, lib="Packages")}

@@ -22,7 +22,7 @@
 #if("optparse" %in% rownames(installed.packages()) == FALSE) {install.packages("optparse", repos=default_repo)}
 
 library(optparse)
-
+.libPaths("Packages")
 # Lst for options:
 option_list <- list(
   make_option(c("-d", "--dir"), dest="script_dir", action="store", type="character"),
