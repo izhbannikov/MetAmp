@@ -6,8 +6,14 @@
 #include <map>
 #include <vector>
 #include <Rcpp.h>
+#include <time.h>
 
 using namespace Rcpp;
+
+double random(double min, double max)
+{
+    return min + (max - min) / RAND_MAX * rand();
+}
 
 std::string remove_letter( std::string str, char c )
 {
@@ -111,6 +117,7 @@ RcppExport SEXP BuildIdentityMatrix(SEXP fname)
 
 RcppExport SEXP BuildIdentityMatrixUSEARCH(SEXP fnameU, SEXP sz /*Total reads*/, SEXP sz_ref /*Total reference reads*/) 
 {
+	srand((unsigned int)time(0));
 	std::string line;
 	std::string filename = Rcpp::as<std::string>(fnameU);
     std::ifstream in(filename.c_str());
@@ -162,6 +169,9 @@ RcppExport SEXP BuildIdentityMatrixUSEARCH(SEXP fnameU, SEXP sz /*Total reads*/,
     		}
     		// Calculating distance:
     		imatrix(_i, _j) = 1.0-imatrix(_i, _j);
+    		if (imatrix(_i, _j) == 0) {
+    			imatrix(_i, _j) = random(0.001, 0.01);
+    		}
     	}
 	}
 	

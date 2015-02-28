@@ -1,12 +1,11 @@
 Makefile
 Packages
 README.md
+R_Lib
 UserGuide.pdf
 bin
-config.R
 content
 data
-main.R
-metamp.R
+metamp.py
 python_scripts
 src

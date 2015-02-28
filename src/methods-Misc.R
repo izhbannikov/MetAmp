@@ -39,7 +39,7 @@ read16S <- function(infile, imatrix) {
   #Make multidimensional scaling in order to place 16S sequences into the plane:
   #mds16S <- cmdscale(dist_matrix16S) # Classical multidimensional scaling of a data matrix. Also known as principal coordinates analysis (Gower, 1966). 
   #mds16S <- isoMDS(dist_matrix16S,maxit = 500,tol = 0.00001)$points # NMDS
-  mds16S <- sammon(dist_matrix16S,niter = 1000)$points # NMDS
+  mds16S <- sammon(dist_matrix16S,niter = 1000, magic=0.001, tol = .Machine$double.eps/10e150)$points # NMDS
   # Here we add corner points in order to make sure that each empirical point will be inside of some triangle:
   
   #--Temporary comment:
@@ -71,7 +71,7 @@ process_data <- function(imatrix, mds16s, nrp) {
   #Make multidimensional scaling:
   #mdsV <- cmdscale(dist_matrixV) #Classical multidimensional scaling of a data matrix. Also known as principal coordinates analysis (Gower, 1966).
   #mdsV <- isoMDS(dist_matrixV,maxit = 500,tol=0.00001)$points #NMDS
-  mdsV <- sammon(dist_matrixV,niter = 1000)$points #NMDS
+  mdsV <- sammon(dist_matrixV,niter = 1000, magic=0.001, tol = .Machine$double.eps/10e150)$points #NMDS
   # Here we add corner points in order to make sure that each empirical point will be inside of some triangle:
   
   #--Temporary comment:
@@ -216,7 +216,7 @@ write_coordinates <- function(filename) {
     for (j in 1:dim(merged_table[[i]])[1]) {
       coords <- c(summary_matrix[merged_table[[i]][j,1],] + runif(1, min = 0, max = 0.001))
       string_to_write <- paste(toString(merged_table[[i]][j,2]), coords[1], coords[2])
-      print(string_to_write)
+      #print(string_to_write) - printing to the screen is disabled
       write(x=string_to_write,file=filename,append=T)
     }
   }

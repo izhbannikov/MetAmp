@@ -34,10 +34,8 @@ cluster <- function(analysis_dir, default_pref, lib) {
 
 # Perform the final clustering with DBSCAN:
 clusterDBSCAN <- function(refnames, summary_matrix,scoresV) {
-  eps <- quantile(dist(summary_matrix),probs=0.001)[[1]] #0.025)
-  #tmp_clusters <- dbscan(summary_matrix[sample.int(nrow(summary_matrix)),],MinPts=2,  eps=eps)
+  eps <- quantile(dist(summary_matrix),probs=0.0005)[[1]] #0.025)
   tmp_clusters <- dbscan(summary_matrix,MinPts=1,  eps=eps)
-  #tmp_clusters <- dbscan(summary_matrix[sample.int(nrow(summary_matrix)),],MinPts=1,  eps*0.01)
   
   #flag <- F
   #while(flag==F) {
@@ -88,7 +86,7 @@ getRefOTUNum <- function(ref_points, otu) {
 cluster2 <- function(analysis_dir, lib, num) {
   # Denoising:
   denoisedlib <- paste(analysis_dir, "/", basename(lib), "_denoised", sep='')
-  system(paste(usearch7, "-fastq_filter", lib,  "-fastaout", denoisedlib, "-fastq_truncqual 15 -fastq_trunclen 250"))
+  system(paste(usearch7, "-fastq_filter", lib,  "-fastaout", denoisedlib, "-fastq_truncqual", qual, "-fastq_trunclen", min_len)) # "-fastq_truncqual 15 -fastq_trunclen 250"
   # Dereplication:
   dreplib <- paste(denoisedlib, "_drep", sep='')
   system(paste(usearch7, "-derep_fulllength", denoisedlib, "-output", dreplib, "-sizeout"))

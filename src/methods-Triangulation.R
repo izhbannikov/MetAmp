@@ -81,14 +81,14 @@ triangulation <- function(mds16S, mdsV) {
   
     Q <- rbind(c(point.x[1],point.x[2],point.x[3]),#point.x[1]),
                c(point.y[1],point.y[2],point.y[3]),#point.y[1]),
-               c(1,1,1))#,1))
+               c(0,0,1)) #c(1,1,1))#,1))
   
     #Here I am extracting the triangles:
     point.x <- tr_coords[i,1:3]
     point.y <- tr_coords[i,4:6]
     P <- rbind(c(point.x[1],point.x[2],point.x[3]),#point.x[1]),
              c(point.y[1],point.y[2],point.y[3]),#point.y[1]),
-             c(1,1,1))#,1))
+             c(0,0,1)) #c(1,1,1))#,1))
     
     #Affine tr-m:
     A <- affine_transform(P,Q)

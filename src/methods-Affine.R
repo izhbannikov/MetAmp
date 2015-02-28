@@ -1,7 +1,19 @@
 #A function that implements the affine transformation:
 affine_transform <- function(P, Q) {
-  A <- Q %*% t(P) %*% solve(P %*% t(P),tol=.Machine$double.eps/1000)
-  A
+  A = tryCatch({
+    A <- Q %*% t(P) %*% solve(P %*% t(P))#,tol=.Machine$double.eps/10e150)
+ 	}, warning = function(w) {
+    	#warning-handler-code
+	}, error = function(e) {
+		#print("Q")
+		#print(Q)
+		#print("P")
+		#print(P)
+    	A <- matrix(c(1,1,1,1,1,1,0,0,1),byrow=T,nrow=3,ncol=3)
+	}, finally = {
+    	#cleanup-code
+	}) # END tryCatch
+
 }
 
 # Function that carries empirical points back to the reference space. I.e. we apply the affine transformation
