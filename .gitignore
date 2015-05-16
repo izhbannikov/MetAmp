@@ -1,0 +1,12 @@
+Packages/blastparser/src/BLASTParser.o
+Packages/blastparser/src/BLASTParser.so
+R_Lib/
+data/even/
+data/staggered/
+test/
+test100/
+test1000/
+test500/
+*.pyc
+*.so
+*.o
