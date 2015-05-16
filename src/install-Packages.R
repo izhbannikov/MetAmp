@@ -2,6 +2,9 @@
 # A script that install required packages
 # Zhbannikov I.Y. 14/05/2014
 
+if ("rcpp" %in% row.names(installed.packages())==F) {
+  install.packages("rcpp")
+}
 if ("seqinr" %in% row.names(installed.packages())==F) {
   install.packages("seqinr")
 }
