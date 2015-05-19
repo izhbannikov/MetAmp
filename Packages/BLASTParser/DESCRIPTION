@@ -7,4 +7,4 @@ Author: Zhbannikov Ilya Yurievich
 Maintainer: Zhbannikov Ilya Yurievich <i.zhbannikov@mail.ru>
 Description: Parses BLAST output filse into R-readable format.
 License: Absolutno besplatno.
-Built: R 3.0.2; x86_64-pc-linux-gnu; 2015-05-19 19:16:26 UTC; unix
+Built: R 3.0.2; x86_64-pc-linux-gnu; 2015-05-19 19:24:25 UTC; unix

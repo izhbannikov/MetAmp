@@ -1,5 +1,5 @@
 #
-package_dir="Packages"
+package_dir=Packages
 rlibs_dir="R_Lib"
 t=
 all : check install
