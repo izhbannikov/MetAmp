@@ -26,7 +26,8 @@ if("fpc" %in% rownames(installed.packages()) == FALSE) {install.packages("fpc", 
 if("amap" %in% rownames(installed.packages()) == FALSE) {install.packages("amap", repos=default_repo, lib="Packages")}
 if("foreach" %in% rownames(installed.packages()) == FALSE) {install.packages("foreach", repos=default_repo, lib="Packages")}
 if("ShortRead" %in% rownames(installed.packages()) == FALSE) {
-  source("http://bioconductor.org/biocLite.R",local=T)
+  #source("http://bioconductor.org/biocLite.R",local=T)
+  source("Packages/biocLite.R")
   biocLite("ShortRead")
 }
 if("Rcpp" %in% rownames(installed.packages()) == FALSE) {install.packages("Rcpp", repos=default_repo, lib="Packages")}
