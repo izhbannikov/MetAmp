@@ -28,7 +28,7 @@ if("foreach" %in% rownames(installed.packages()) == FALSE) {install.packages("fo
 if("ShortRead" %in% rownames(installed.packages()) == FALSE) {
   #source("http://bioconductor.org/biocLite.R",local=T)
   #source("Packages/biocLite.R")
-  system("R CMD INSTALL Packages/ShortRead_1.26.0.tar.gz")
+  system("R CMD INSTALL Packages/ShortRead_1.26.0.tar.gz -l ../R_Lib")
 }
 if("Rcpp" %in% rownames(installed.packages()) == FALSE) {install.packages("Rcpp", repos=default_repo, lib="Packages")}
 if("stringr" %in% rownames(installed.packages()) == FALSE) {install.packages("stringr", repos=default_repo, lib="Packages")}
