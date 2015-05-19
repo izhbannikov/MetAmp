@@ -16,7 +16,7 @@ check :
 	@echo "Done!"
 	
 install :
-	mkdir -p $(rlibs_dir)
+	#mkdir -p $(rlibs_dir)
 	
 	@echo "Installed required libraries..."
 	Rscript $(package_dir)/install.R
@@ -24,7 +24,7 @@ install :
 	@rm -rf $(package_dir)/blastparser/src/*.o
 	@rm -rf $(package_dir)/blastparser/src/*.so
 	@export R_LIBS=$(package_dir)
-	R CMD INSTALL $(package_dir)/blastparser -l $(rlibs_dir)
+	R CMD INSTALL $(package_dir)/blastparser -l $(package_dir)
 	@echo "Done!"
 	
 	@echo "Unzipping data files..."

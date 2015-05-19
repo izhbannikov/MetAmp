@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 library(seqinr) # For manupulations with sequences
-library(BLASTParser,lib.loc=R_LIBS) # Parses USEARCH output file
+#library(BLASTParser,lib.loc=R_LIBS) # Parses USEARCH output file
+library(BLASTParser)
 library(tripack) # For triangulation
 library(RANN) # For kd-tree
 library(fpc) # For clustering using the DBSCAN algorithm
