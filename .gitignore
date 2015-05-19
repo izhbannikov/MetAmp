@@ -7,3 +7,4 @@ test500/
 *.pyc
 *.so
 *.o
+python_scripts/*.pyc
