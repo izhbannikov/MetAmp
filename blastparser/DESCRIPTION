@@ -1,0 +1,9 @@
+Package: BLASTParser
+Type: Package
+Title: Parses BLAST output filse into R-readable format.
+Version: 1.0
+Date: 2014-03-17
+Author: Zhbannikov Ilya Yurievich
+Maintainer: Zhbannikov Ilya Yurievich <i.zhbannikov@mail.ru>
+Description: Parses BLAST output filse into R-readable format.
+License: Absolutno besplatno.

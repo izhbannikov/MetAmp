@@ -1,6 +1,3 @@
-Packages/blastparser/src/BLASTParser.o
-Packages/blastparser/src/BLASTParser.so
-R_Lib/
 data/even/
 data/staggered/
 test/

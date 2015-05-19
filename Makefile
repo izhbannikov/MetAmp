@@ -1,7 +1,5 @@
 #
 package_dir=Packages
-rlibs_dir="R_Lib"
-t=
 all : check install
 
 check :
@@ -16,15 +14,15 @@ check :
 	@echo "Done!"
 	
 install :
-	#mkdir -p $(rlibs_dir)
+	mkdir -p $(package_dir)
 	
 	@echo "Installed required libraries..."
-	Rscript $(package_dir)/install.R
+	Rscript install.R
 	@echo "Installing BLASTParser package..."
-	@rm -rf $(package_dir)/blastparser/src/*.o
-	@rm -rf $(package_dir)/blastparser/src/*.so
+	@rm -rf blastparser/src/*.o
+	@rm -rf blastparser/src/*.so
 	@export R_LIBS=$(package_dir)
-	R CMD INSTALL $(package_dir)/blastparser -l $(package_dir)
+	R CMD INSTALL blastparser -l $(package_dir)
 	@echo "Done!"
 	
 	@echo "Unzipping data files..."
@@ -50,4 +48,5 @@ clean :
 	@rm -rf data/__MACOSX
 	@rm -rf data/even
 	@rm -rf data/staggered
+	@rm -rf Packages
 	@echo "Done!"
