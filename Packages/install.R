@@ -26,12 +26,14 @@ if("fpc" %in% rownames(installed.packages()) == FALSE) {install.packages("fpc", 
 if("amap" %in% rownames(installed.packages()) == FALSE) {install.packages("amap", repos=default_repo, lib="Packages")}
 if("foreach" %in% rownames(installed.packages()) == FALSE) {install.packages("foreach", repos=default_repo, lib="Packages")}
 if("ShortRead" %in% rownames(installed.packages()) == FALSE) {
-  source("http://bioconductor.org/biocLite.R")
+  source("http://bioconductor.org/biocLite.R",local=T)
   biocLite("ShortRead")
 }
 if("Rcpp" %in% rownames(installed.packages()) == FALSE) {install.packages("Rcpp", repos=default_repo, lib="Packages")}
 if("stringr" %in% rownames(installed.packages()) == FALSE) {install.packages("stringr", repos=default_repo, lib="Packages")}
 if("MASS" %in% rownames(installed.packages()) == FALSE) {install.packages("MASS", repos=default_repo, lib="Packages")}
 if("optparse" %in% rownames(installed.packages()) == FALSE) {install.packages("optparse", repos=default_repo, lib="Packages")}
+if("rcpp" %in% rownames(installed.packages()) == FALSE) {install.packages("rcpp", repos=default_repo, lib="Packages")}
+
 #
 print("Done!")

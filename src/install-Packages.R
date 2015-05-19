@@ -29,7 +29,7 @@ if ("amap" %in% row.names(installed.packages())==F) {
 if ("doMC" %in% row.names(installed.packages())==F) {
   install.packages("doMC")
 }
-if ("CDHITConverter" %in% row.names(installed.packages())==F) {
-  source("http://bioconductor.org/biocLite.R")
+if ("ShortRead" %in% row.names(installed.packages())==F) {
+  source("http://bioconductor.org/biocLite.R", local=T)
   biocLite("ShortRead")
 }
