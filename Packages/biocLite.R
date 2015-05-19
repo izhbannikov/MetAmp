@@ -92,7 +92,7 @@ local({
                     url <- sprintf("%s/%s/bioc",
                                    url0, as.character(biocVers))
                     txt0 <- "'biocLite.R' failed to install 'BiocInstaller',
-                            use 'install.packages(\"%s\", repos=\"%s\", lib="Packages")'"
+                            use 'install.packages(\"%s\", repos=\"%s\", lib=\"Packages\")'"
                     txt <- sprintf(txt0, "BiocInstaller", url)
                     message(paste(strwrap(txt), collapse="\n  "))
                 }
