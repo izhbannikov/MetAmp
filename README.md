@@ -14,6 +14,28 @@ Make sure that you have a stable Internet connection. Download or clone from the
 This will check for required packages and install in case if some packages were not found.
 You will need Python 2.7.6 (older versions may not support some features), R and GCC.
 
+## Linux
+### Ubuntu
+```
+$sudo apt-get update
+$sudo apt-get install git
+$sudo apt-get install r-base r-base-dev
+$git clone http://github.com/izhbannikov/metamp.git
+$cd metamp
+$make
+```
+
+## OS-X
+Download and install R (www.r-project.org). Then:
+```
+$git clone http://github.com/izhbannikov/metamp.git
+$cd metamp
+$make
+``
+
+## Windows
+Currently not supported. Sorry.
+
 # Provided data description
 
 We provided data that can be used in your projects. This data located in ```data``` directory.
