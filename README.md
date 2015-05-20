@@ -10,9 +10,8 @@ Such marker regions serve as unique identificators for species. There are nine m
 
 # How to install
 
-Make sure that you have a stable Internet connection. Download or clone from the GitHub, save it in some folder you wish. Then simply run ```make```. In some cases you need to be an admin and in this case you have to use ```sudo make```.
-This will check for required packages and install in case if some packages were not found.
-You will need Python 2.7.6 (older versions may not support some features), R and GCC.
+Make sure that you have a stable Internet connection. 
+You will also  need Python 2.7.6 (older versions may not support some features), R and GCC.
 
 ## Linux
 ### Ubuntu
