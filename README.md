@@ -31,7 +31,7 @@ Download and install R (www.r-project.org). Then:
 $git clone http://github.com/izhbannikov/metamp.git
 $cd metamp
 $make
-``
+```
 
 ## Windows
 Currently not supported. Sorry.
